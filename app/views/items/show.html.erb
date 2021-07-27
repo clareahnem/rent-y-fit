@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @item.user_id %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @item.category_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @item.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @item.description %>
+</p>
+
+<p>
+  <strong>Condition:</strong>
+  <%= @item.condition %>
+</p>
+
+<p>
+  <strong>Availability:</strong>
+  <%= @item.availability %>
+</p>
+
+<p>
+  <strong>Deposit:</strong>
+  <%= @item.deposit %>
+</p>
+
+<p>
+  <strong>Price per day:</strong>
+  <%= @item.price_per_day %>
+</p>
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>
