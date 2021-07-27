@@ -4,7 +4,7 @@ protect_from_forgery with: :exception
 
     protected
     def configure_permitted_parameters
-        devise_parameter_sanitizer.permit(:sign_up){|u| u.permit(:username, :first_name, :last_name, :email, :password, :password_confirmation)}
+        devise_parameter_sanitizer.permit(:sign_up){|u| u.permit(:username, :first_name, :last_name, :email, :password, :password_confirmation, address_attributes: [:street_no, :street, :suburb, :postcode])}
         devise_parameter_sanitizer.permit(:account_update){ |u| u.permit(:username, :first_name, :last_name, :email, :password, :current_password)}
     end
 end

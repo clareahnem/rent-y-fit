@@ -1,6 +1,6 @@
 <h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= nested_form_for([resource_name, resource.with_address], url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
@@ -35,6 +35,31 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
+
+  <%# nested form for address fields %>
+  <%= f.fields_for :address do |nest_f| %>
+    <p>Your Address</p>
+    <div class="field">
+      <%= nest_f.label :street_no %><br />
+      <%= nest_f.text_field :street_no, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= nest_f.label :street %><br />
+      <%= nest_f.text_field :street, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= nest_f.label :suburb %><br />
+      <%= nest_f.text_field :suburb, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= nest_f.label :postcode %><br />
+      <%= nest_f.text_field :postcode, autofocus: true %>
+    </div>
+
+  <% end %>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
