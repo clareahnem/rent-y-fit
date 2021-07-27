@@ -18,5 +18,5 @@ if Category.count == 0
 end
 
 if User.count == 0
-    User.create(username:"Tester", first_name:"First", last_name:"Last", email:"test@test.com", password:"password", password_confirmation:"password", address_attributes:[{street_no:"123", street:"Sydney road", suburb:"Brunswick", postcode:"3056"}])
+    User.create(username:"Tester", first_name:"First", last_name:"Last", email:"test@test.com", password:"password", password_confirmation:"password", address_attributes: {street_no:"123", street:"Sydney road", suburb:"Brunswick", postcode:"3056"})
 end

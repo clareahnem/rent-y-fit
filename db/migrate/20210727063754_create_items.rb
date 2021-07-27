@@ -6,7 +6,7 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.string :name
       t.text :description
       t.integer :condition
-      t.boolean :availability
+      t.boolean :availability, null: false, default: true
       t.integer :deposit
       t.integer :price_per_day
 
