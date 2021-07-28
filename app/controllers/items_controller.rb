@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_variables, only: [:new, :edit]
 
   # GET /items or /items.json
   def index
@@ -22,7 +23,7 @@ class ItemsController < ApplicationController
 
   # POST /items or /items.json
   def create
-    @item = Item.new(item_params)
+    @item = current_user.item.new(item_params)
 
     respond_to do |format|
       if @item.save
@@ -66,5 +67,10 @@ class ItemsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def item_params
       params.require(:item).permit(:user_id, :category_id, :name, :description, :condition, :availability, :deposit, :price_per_day)
+    end
+
+    def set_variables
+      @categories = Category.all
+      @conditions = Item.conditions.keys
     end
 end
