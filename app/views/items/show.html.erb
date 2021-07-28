@@ -1,5 +1,14 @@
 <p id="notice"><%= notice %></p>
 
+
+<h3>
+  <strong><%= @item.name %></strong>
+</h3>
+
+<p>
+  <%= @item.description %>
+</p>
+
 <p>
   <strong>Listed by:</strong>
   <%= @item.user_id %>
@@ -11,36 +20,19 @@
 </p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @item.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @item.description %>
-</p>
-
-<p>
   <strong>Condition:</strong>
-  <%= @item.condition %>
+  <%= @item.condition.capitalize %>
 </p>
 
-<p>
-  <strong>Availability:</strong>
-  <%= @item.availability %>
-</p>
+<% if @item.availability? %>
+  <p>Available to Rent</p>
+<% end %>
 
-<p>
-  <strong>Deposit:</strong>
-  <%= @item.deposit %>
-</p>
 
-<p>
-  <strong>Price per day:</strong>
-  <%= @item.price_per_day %>
-</p>
+<h5 class="price-show"><strong>$<%= price_to_dollars(@item.price_per_day)%></strong>/day +</h5>
+<p class="price-show"> $<%= price_to_dollars(@item.deposit)%> Deposit</p>
 
-<%= image_tag @item.picture if @item.picture.attached?%>
+<%= image_tag @item.picture, class:"show-image" if @item.picture.attached?%>
 
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+<%= link_to 'Edit', edit_item_path(@item), class:"btn bg-warning"%>
+<%= link_to 'Back', items_path, class:"btn bg-danger" %>
