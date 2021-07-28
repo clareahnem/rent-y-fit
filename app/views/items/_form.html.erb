@@ -46,6 +46,12 @@
     <%= form.number_field :price_per_day %>
   </div>
 
+  <h5> Upload an image</h5>
+  <div class='field'>
+  <%=form.label :picture%>
+  <%= form.file_field :picture, accept: 'image/png, image/jpg, image/jpeg'%>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

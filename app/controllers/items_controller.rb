@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
 
   # POST /items or /items.json
   def create
-    @item = current_user.item.new(item_params)
+    @item = current_user.items.new(item_params)
 
     respond_to do |format|
       if @item.save
@@ -66,7 +66,7 @@ class ItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def item_params
-      params.require(:item).permit(:user_id, :category_id, :name, :description, :condition, :availability, :deposit, :price_per_day)
+      params.require(:item).permit(:user_id, :category_id, :name, :description, :condition, :availability, :deposit, :price_per_day, :picture)
     end
 
     def set_variables

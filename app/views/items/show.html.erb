@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
+  <strong>Listed by:</strong>
   <%= @item.user_id %>
 </p>
 
@@ -39,6 +39,8 @@
   <strong>Price per day:</strong>
   <%= @item.price_per_day %>
 </p>
+
+<%= image_tag @item.picture if @item.picture.attached?%>
 
 <%= link_to 'Edit', edit_item_path(@item) %> |
 <%= link_to 'Back', items_path %>
