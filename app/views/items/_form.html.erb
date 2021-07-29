@@ -15,6 +15,19 @@
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
+  
+  <div class="field mb-3"> 
+      <%# choose from available brands (can choose multiple) %>
+      <%=form.collection_check_boxes :brand_ids, @brands, :id, :name do |b|%>
+        <%=b.check_box class: 'form-check-line mr-2'%>
+        <%=b.label class: 'form-check-label'%>
+      <% end %> <br>
+      <%# or if you can't find the brand, write it in %>
+      <%=form.fields_for :brands, @new_brands do |add_brand|%>
+        <%= add_brand.label :name, "Add  Brand:"%>
+        <%= add_brand.text_field :name %> 
+      <% end %>
+    </div>
 
   <div class="form-group mb-3 ml-2">
     <%= form.label :category_id %>

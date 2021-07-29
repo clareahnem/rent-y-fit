@@ -15,6 +15,7 @@ class ItemsController < ApplicationController
   # GET /items/new
   def new
     @item = Item.new
+    @new_brands = @item.brands.build
   end
 
   # GET /items/1/edit
@@ -66,11 +67,12 @@ class ItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def item_params
-      params.require(:item).permit(:user_id, :category_id, :name, :description, :condition, :availability, :deposit, :price_per_day, :picture)
+      params.require(:item).permit(:user_id, :category_id, :name, :description, :condition, :availability, :deposit, :price_per_day, :picture, brand_ids: [], brands_attributes: [:name])
     end
 
     def set_variables
       @categories = Category.all
       @conditions = Item.conditions.keys
+      @brands = Brand.all
     end
 end

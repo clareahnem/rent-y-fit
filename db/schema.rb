@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_28_054706) do
+ActiveRecord::Schema.define(version: 2021_07_29_120358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,12 @@ ActiveRecord::Schema.define(version: 2021_07_28_054706) do
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
+  create_table "brands", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -68,6 +74,15 @@ ActiveRecord::Schema.define(version: 2021_07_28_054706) do
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
+  create_table "items_brands", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.bigint "brand_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["brand_id"], name: "index_items_brands_on_brand_id"
+    t.index ["item_id"], name: "index_items_brands_on_item_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -87,4 +102,6 @@ ActiveRecord::Schema.define(version: 2021_07_28_054706) do
   add_foreign_key "addresses", "users"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "users"
+  add_foreign_key "items_brands", "brands"
+  add_foreign_key "items_brands", "items"
 end
