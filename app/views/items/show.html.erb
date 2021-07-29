@@ -1,38 +1,53 @@
-<p id="notice"><%= notice %></p>
 
+<div class = "container">
+  <div class="row">
+    <div class="col-7">
+      <h2 class='pb-4'>
+        <strong><%= @item.name %></strong>
+      </h2>
 
-<h3>
-  <strong><%= @item.name %></strong>
-</h3>
+      <p>
+        <%= @item.description %>
+      </p>
 
-<p>
-  <%= @item.description %>
-</p>
+      <p>
+        <strong>Listed by:</strong>
+        <%= @item.user_id %>
+      </p>
 
-<p>
-  <strong>Listed by:</strong>
-  <%= @item.user_id %>
-</p>
+      <p>
+        <strong>Category:</strong>
+        <%= @item.category_id %>
+      </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @item.category_id %>
-</p>
+      <p>
+        <strong>Condition:</strong>
+        <%= @item.condition.capitalize %>
+      </p>
 
-<p>
-  <strong>Condition:</strong>
-  <%= @item.condition.capitalize %>
-</p>
+      <h5 class="price-show"><strong>$<%= price_to_dollars(@item.price_per_day)%></strong>/day +</h5>
+      <p class="price-show"> $<%= price_to_dollars(@item.deposit)%> Deposit</p>
 
-<% if @item.availability? %>
-  <p>Available to Rent</p>
-<% end %>
-
-
-<h5 class="price-show"><strong>$<%= price_to_dollars(@item.price_per_day)%></strong>/day +</h5>
-<p class="price-show"> $<%= price_to_dollars(@item.deposit)%> Deposit</p>
-
-<%= image_tag @item.picture, class:"show-image" if @item.picture.attached?%>
-
-<%= link_to 'Edit', edit_item_path(@item), class:"btn bg-warning"%>
-<%= link_to 'Back', items_path, class:"btn bg-danger" %>
+      <div class ='row mt-4'>
+        <% if user_signed_in? && (current_user.id != @item.user_id) %>
+          <% if @item.availability?%>
+            <%= button_to "Request to Rent", "#", class:"btn bg-info m-2"%>  
+          <% else %>
+            <p>This Item is currently not available for rent.</p>
+          <% end %>
+        <% elsif !user_signed_in? %>
+          <%= button_to "Log In to Rent", new_user_session_path, class:"btn bg-info m-2"%>
+        <% end%>
+      </div>
+    </div>
+    <div class="col-6 col-md-5">
+      <%= image_tag @item.picture, class:"show-image" if @item.picture.attached?%>
+      <div class='row p-3'>
+        <% if user_signed_in? && (current_user.id == @item.user_id) %>
+          <%= link_to 'Edit', edit_item_path(@item), class:"btn bg-warning m-2"%>
+          <%= link_to 'Back', items_path, class:"btn bg-danger m-2" %>
+        <% end %>
+      </div>
+  </div>
+  </div>
+</div>

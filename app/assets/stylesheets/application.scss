@@ -16,10 +16,16 @@
 
  @import "bootstrap/scss/bootstrap";
 
- .navbar{
-     background: rgb(226, 226, 226);
-     #navlink{
-         color: red;
-     }
+
+ body {
+    font-family: 'Lato', sans-serif;
+    .navbar{
+        background: rgb(226, 226, 226);
+        #navlink{
+            color: red;
+            font-family: 'Lato', sans-serif;
+        }
+    }
+   
  }
  
