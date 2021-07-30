@@ -1,5 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Address, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  context "validations" do
+    it "is not valid without a user" do
+      address = build(:address, user_id: nil)
+      expect(address).to_not be_valid
+    end
+
+    it "is not valid outside of victoria" do
+      address = build(:address, postcode: "4000")
+      expect(address).to_not be_valid
+    end
+  end
 end

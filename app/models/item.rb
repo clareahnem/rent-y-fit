@@ -17,7 +17,8 @@ class Item < ApplicationRecord
   before_save :convert_prices_to_cents
 
   # data validations
-
+  validates :name, presence: true
+  validates :price_per_day, presence: true
 
 
   private

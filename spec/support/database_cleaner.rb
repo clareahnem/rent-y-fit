@@ -1,7 +1,7 @@
 # rspec configurations
 # configurations for database cleaner 
 
-Rspec.configure do |config|
+RSpec.configure do |config|
     # want to set up truncation cleaning strategy nefore test suite runs
     config.before(:suite) do
         DatabaseCleaner.clean_with(:truncation)

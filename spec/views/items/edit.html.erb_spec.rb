@@ -2,15 +2,16 @@ require 'rails_helper'
 
 RSpec.describe "items/edit", type: :view do
   before(:each) do
+    @user = User.create(username: "username-test", first_name:"firstname", last_name:"lastname", email:"testing.@test.com", password:"password", password_confirmation:"password")
     @item = assign(:item, Item.create!(
-      user: nil,
-      category: nil,
+      user: @user.id,
+      category: 1,
       name: "MyString",
       description: "MyText",
       condition: 1,
-      availability: false,
-      deposit: 1,
-      price_per_day: 1
+      availability: true,
+      deposit: 10000,
+      price_per_day: 1000
     ))
   end
 
