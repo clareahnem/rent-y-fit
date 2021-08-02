@@ -31,19 +31,24 @@
       <div class ='row mt-4'>
         <% if user_signed_in? && (current_user.id != @item.user_id) %>
           <% if @item.availability?%>
+            <%# if user is signed in and availableitem shown is not theirs, display a request to rent button %>
             <%= button_to "Request to Rent", "#", class:"btn bg-info m-2"%>  
           <% else %>
+            <%# is user is signed in, item is not theirs, but item is not available %>
             <p>This Item is currently not available for rent.</p>
           <% end %>
         <% elsif !user_signed_in? %>
+          <%# if user is not signed in display burron to sign in %>
           <%= button_to "Log In to Rent", new_user_session_path, class:"btn bg-info m-2"%>
         <% end%>
       </div>
     </div>
     <div class="col-6 col-md-5">
-      <%= image_tag @item.picture, class:"show-image" if @item.picture.attached?%>
+      <%# uses helper_method to display uploaded image or logo %>
+      <%= image_tag product_image(@item), class:"show-image"%>
       <div class='row p-3'>
         <% if user_signed_in? && (current_user.id == @item.user_id) %>
+          <%# is the item is posted by this user display edit and delete buttons %>
           <%= link_to 'Edit', edit_item_path(@item), class:"btn bg-warning m-2"%>
           <%= link_to 'Back', items_path, class:"btn bg-danger m-2" %>
         <% end %>

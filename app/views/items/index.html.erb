@@ -4,9 +4,12 @@
 
 <div class="d-flex flex-wrap justify-content-around">
   <%@items.each do |item|%>
-    <div class="card bg-secondary mb-3 p-2" style="width: 20vw;">
-      <%= image_tag item.picture, class:"card-image" if item.picture.attached?%>
-      <div class="card-body">
+    <div class="card bg-secondary mb-3 p-2" style="width: 22vw;">
+      <div class = "card-image m-auto align-self-center">
+      <%# uses helper_method to display uploaded image or logo %>
+      <%= image_tag product_image(item), class:"index-image"%>
+      </div>
+      <div class="card-body mt-2">
         <h5 class="card-title"><%= item.name%></h5>
         <p><strong>Condition:</strong> <%= item.condition.capitalize%></p>
         <p><strong>$</strong><%= price_to_dollars(item.price_per_day) %>/day</p>
