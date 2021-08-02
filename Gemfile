@@ -55,3 +55,5 @@ gem "devise", "~> 4.8"
 gem "nested_form", "~> 0.3.2"
 
 gem "aws-sdk-s3", "~> 1.96"
+
+gem 'validates_timeliness', '~> 6.0.0.alpha1'

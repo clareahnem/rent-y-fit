@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :order do
-    booking { nil }
-    receipt_url { "MyString" }
-    payment_id { "MyString" }
+    booking 
+    receipt_url { "receipt" }
+    payment_id { "payment" }
   end
 end

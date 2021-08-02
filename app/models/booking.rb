@@ -8,12 +8,7 @@ class Booking < ApplicationRecord
 
   # validations
   validates :no_of_days, presence: true, length: {in: 1..30}
-  validates :start_date, presence: true
-  validates :must_be_in_the_future
+  validates :start_date, presence: true, timeliness: {after: lambda { Date.current }, type: :date}
 
-  def must_be_in_the_future
-    if start_date < Date.tomorrow
-      error.add(:start_date, "must be from the day after current date")
-    end
-  end
+  
 end

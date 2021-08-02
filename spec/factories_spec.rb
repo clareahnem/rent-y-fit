@@ -59,3 +59,47 @@ RSpec.describe "Item Factory" do
     end
 
 end
+
+RSpec.describe "Booking Factory" do
+    it "is valid" do 
+        expect(build(:booking)).to be_valid
+    end
+
+    context "testing properties" do
+        before(:all) do
+        @booking = build(:booking)
+        end
+
+        it "has the correct booking status" do
+            expect(@booking.status).to eq "pending"
+        end
+
+        it "has the correct no_of_days" do
+            expect(@booking.no_of_days).to eq 5
+        end
+
+        it "should have the start date as a date" do
+            expect(@booking.start_date).to be_a Date
+        end
+    end
+end
+
+RSpec.describe "Order Factory" do
+    it "is valid" do 
+        expect(build(:order)).to be_valid
+    end
+
+    context "testing properties" do
+        before(:all) do
+        @order = build(:order)
+        end
+
+        it "has the correct receipt_url" do
+            expect(@order.receipt_url).to eq "receipt"
+        end
+
+        it "has the correct payment_id" do
+            expect(@order.payment_id).to eq "payment"
+        end
+    end
+end

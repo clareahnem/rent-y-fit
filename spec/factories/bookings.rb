@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :booking do
-    item { nil }
-    requesting_user { nil }
-    status { 1 }
-    no_of_days { 1 }
-    start_date { "2021-08-02" }
+    item 
+    requesting_user_id { 2 }
+    status { "pending" }
+    no_of_days { 5 }
+    start_date { "2021-09-04" }
   end
 end
