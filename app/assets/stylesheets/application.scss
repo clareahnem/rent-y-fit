@@ -21,9 +21,24 @@
     font-family: 'Lato', sans-serif;
     .navbar{
         background: rgb(226, 226, 226);
+        .navbar-brand {
+            &:hover {
+                background: white;
+                box-shadow: 0px 2px 1px rgb(224, 223, 223);
+            }
+        }
+        img {
+            max-width: 100px;
+        }
         #navlink{
             color: red;
             font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            font-style: italic;
+            &:hover {
+                background: white;
+                text-decoration: underline;
+            }
         }
     }
    
