@@ -4,6 +4,8 @@ class Item < ApplicationRecord
   belongs_to :category
   has_many :items_brands
   has_many :brands, through: :items_brands
+  has_many :bookings
+  has_many :orders, through: :bookings
 
   # attributes and place values
   enum condition: {distressed: 0, good: 1, excellent: 2, unworn: 3}
