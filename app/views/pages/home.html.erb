@@ -1,1 +1,15 @@
-<%= image_tag "RENT-Y-FiT_Logo.png"%>
+<div class="opening">
+    <%= image_tag "RENT-Y-FiT_Logo_sml.png", class:"home-image"%>
+    <h2>Enjoy fashion by renting fresh fits🔥</h2>
+</div>
+<div class="introduction">
+    <h3>RENT-Y-FiT creates a new way for Melbournians to stay on trend</h3>
+    <p>Wishing you were rich enough to be wearing fresh fits everyday?</p>
+    <p>RENT-Y-FiT creates a platform to share and borrow clothing items with one another, so you don't have to sacrifice your bank account to be fashionable!</p>
+    <p>Simply browse through items, pick a fit that you want to wear, and start renting! </p>
+    <% if !user_signed_in?%>
+    <%= link_to "Sign Up Now!", new_user_registration_path, class:"btn btn-light mt-3 p-2"%>
+    <% else %>
+    <%= link_to "Browse Items", items_path, class:"btn btn-light mt-3 p-2"%>
+    <% end %>
+</div>
