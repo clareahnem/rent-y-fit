@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
-  resources :items
+  resources :items do
+    resources :bookings, only: [:create, :show, :update, :edit, :delete]
+  end
+  resources :bookings, only: :index
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'pages#home'
   get '/about', to: 'pages#about', as: 'about'
+
+  
+  
+
 end
