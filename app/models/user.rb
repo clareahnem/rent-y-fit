@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_one :address
   has_many :items
+  has_many :bookings, foreign_key: "requesting_user_id"
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

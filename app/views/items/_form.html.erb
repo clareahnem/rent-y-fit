@@ -22,11 +22,11 @@
         <%=b.check_box class: 'form-check-line mr-2'%>
         <%=b.label class: 'form-check-label'%>
       <% end %> <br>
-      <%# or if you can't find the brand, write it in %>
-      <%# <%=form.fields_for :brands, @new_brands do |add_brand|%>
-        <%# <%= add_brand.label :name, "Add  Brand:"%> 
-        <%# <%= add_brand.text_field :name %>  
-      <%# <% end %> 
+      <%# or if you can't find the brand, write it in %> %>
+      <%=form.fields_for :brands, @new_brands do |add_brand| %>
+        <%= add_brand.label :name, "Add  Brand:"%> 
+        <%= add_brand.text_field :name %>  
+      <% end %>
     </div>
 
   <div class="form-group mb-3 ml-2">

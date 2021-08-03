@@ -11,7 +11,7 @@ class Item < ApplicationRecord
   enum condition: {distressed: 0, good: 1, excellent: 2, unworn: 3}
   has_one_attached :picture
   accepts_nested_attributes_for :items_brands
-
+  accepts_nested_attributes_for :brands
 
   
   # private methods
