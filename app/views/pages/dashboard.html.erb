@@ -1,0 +1,9 @@
+<h1>My Dashboard</h1>
+<div>
+    <h2>New Rent requests</h2>
+    <%= render 'shared/bookingcard', bookings:@requesteditems%>
+</div>
+<div>
+    <h2>All FiTs uploaded by you</h2>
+    <%= render 'shared/itemcard', items:@items%>
+</div>

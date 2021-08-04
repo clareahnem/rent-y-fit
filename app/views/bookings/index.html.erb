@@ -1,7 +1,7 @@
 <div>
-<h1>Items pending rent request (<%=@pendingitems.count%>)</h1>
+<h1>Items pending rent approval (<%=@pendingitems.count%>)</h1>
 <% if @pendingitems.count > 0%>
-    <%= render "card", bookings:@pendingitems%>
+    <%= render "shared/bookingcard", bookings:@pendingitems%>
 <% else %>
 <h3>There are currently no items pending booking request.</h3>
 <% end%>
@@ -10,13 +10,15 @@
 
 <% if @approveditems.count > 0%>
 <div>
-<%= render "card", items:@approveditems%>
+<h2>Items approved by owner for rent(<%=@approveditems.count%>)</h2>
+<%= render "shared/bookingcard", items:@approveditems%>
 </div>
 <% end %>
 
 <% if @declineditems.count > 0 %>
 <div>
-<%= render "card", items:@declineditems %>
+<h2>Declined rent requests(<%=@approveditems.count%>)</h2>
+<%= render "shared/bookingcard", items:@declineditems %>
 </div>
 <% end %> 
 
