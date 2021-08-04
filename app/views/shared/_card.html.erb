@@ -10,7 +10,14 @@
         <p><strong>Start date:</strong> <%= booking.start_date%></p>
         <p><strong>Days to rent:</strong> <%= booking.no_of_days%></p>
         <p><strong>$</strong><%= price_to_dollars(booking.item.price_per_day) %>/day</p>
-        <%= link_to "View Booking", item_booking_path(booking.item.id, booking.id), class:"btn bg-white"%>
+        <% if booking.status = "pending"%>
+            <%= link_to "View Item", item_path(booking.item), class:"btn bg-white"%>
+            <%= button_to "Delete booking request", booking_path(booking), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-danger"%>
+        <% elsif booking.status = "approved"%>
+            <%= link_to "Proceed to Order", item_booking_path(booking.item.id, booking.id), class:"btn bg-white"%>
+        <% elsif booking.status = "declined"%>
+            <%= button_to "dismiss booking request", booking_path(booking), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-danger"%>
+        <% end %>
       </div>
     </div>
   <% end %>

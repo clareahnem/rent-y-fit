@@ -1,15 +1,15 @@
 class BookingsController < ApplicationController
     before_action :set_item, only: [:create]
+    before_action :set_booking, only: [:destroy]
     def index
         # want to show all items that pending user's booking request
-        @pendingitems = Booking.where(status: "pending", requesting_user_id: current_user.id).preload(:item)
+        @pendingitems = Booking.where(status: "pending", requesting_user_id: current_user.id).eager_load(:item)
         
         # show all items where booking has been approved by owner
-        @approveditems = Booking.where(status: "approved", requesting_user_id: current_user.id).preload(:item)
+        @approveditems = Booking.where(status: "approved", requesting_user_id: current_user.id).eager_load(:item)
 
         #show all items where booking has been declined by owner
-        @declineditems = Booking.where(status: "declined", requesting_user_id: current_user.id).preload(:item)
-
+        @declineditems = Booking.where(status: "declined", requesting_user_id: current_user.id).eager_load(:item)
     end
 
     def create
@@ -29,12 +29,18 @@ class BookingsController < ApplicationController
     def edit
     end
 
-    def delete
+    def destroy
+        @booking.destroy
+        redirect_to bookings_path, notice: "Booking request was successfully destroyed"
     end
+
 
     private 
     def set_item
         @item = Item.find(params[:item_id])
+    end
+    def set_booking
+        @booking = Booking.find(params[:id])
     end
     def booking_params
         params.require(:booking).permit(:requesting_user_id, :status, :no_of_days, :start_date)

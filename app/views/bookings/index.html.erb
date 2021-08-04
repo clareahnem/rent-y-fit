@@ -1,5 +1,5 @@
 <div>
-<h1>Items pending your booking request (<%=@pendingitems.count%>)</h1>
+<h1>Items pending rent request (<%=@pendingitems.count%>)</h1>
 <% if @pendingitems.count > 0%>
     <%= render "shared/card", bookings:@pendingitems%>
 <% else %>
