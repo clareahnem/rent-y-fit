@@ -1,0 +1,23 @@
+<div>
+<h1>Items pending your booking request (<%=@pendingitems.count%>)</h1>
+<% if @pendingitems.count > 0%>
+    <%= render "shared/card", bookings:@pendingitems%>
+<% else %>
+<h3>There are currently no items pending booking request.</h3>
+<% end%>
+</div>
+
+
+<% if @approveditems.count > 0%>
+<div>
+<%= render "shared/card", items:@approveditems%>
+</div>
+<% end %>
+
+<% if @declineditems.count > 0 %>
+<div>
+<%= render "shared/card", items:@declineditems %>
+</div>
+<% end %> 
+
+
