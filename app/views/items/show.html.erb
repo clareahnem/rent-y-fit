@@ -31,8 +31,8 @@
       <div class ='row mt-4'>
         <% if user_signed_in? && (current_user.id != @item.user_id) %>
           <% if @item.availability?%>
-            <%# if user is signed in and availableitem shown is not theirs, display a request to rent button %>
-            <%= button_to "Request to Rent", "#", class:"btn bg-info m-2"%>  
+            <%# if user is signed in and availableitem shown is not theirs, display a booking request form%>
+            <%= render "shared/requestform", item:@item, booking:@item.bookings.build%> 
           <% else %>
             <%# is user is signed in, item is not theirs, but item is not available %>
             <p>This Item is currently not available for rent.</p>

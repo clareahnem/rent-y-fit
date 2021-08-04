@@ -1,0 +1,24 @@
+<div class="d-flex flex-wrap justify-content-around">
+  <%bookings.each do |booking|%>
+    <div class="card bg-secondary mb-3 p-2" style="width: 22vw;">
+      <div class = "card-image m-auto align-self-center">
+      <%# uses helper_method to display uploaded image or logo %>
+      <%= image_tag product_image(booking.item), class:"index-image"%>
+      </div>
+      <div class="card-body mt-2">
+        <h5 class="card-title"><%= booking.item.name%></h5>
+        <p><strong>Start date:</strong> <%= booking.start_date%></p>
+        <p><strong>Days to rent:</strong> <%= booking.no_of_days%></p>
+        <p><strong>$</strong><%= price_to_dollars(booking.item.price_per_day) %>/day</p>
+        <% if booking.status = "pending"%>
+            <%= link_to "View Item", item_path(booking.item), class:"btn bg-white"%>
+            <%= button_to "Delete booking request", booking_path(booking), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-danger"%>
+        <% elsif booking.status = "approved"%>
+            <%= link_to "Proceed to Order", item_booking_path(booking.item.id, booking.id), class:"btn bg-white"%>
+        <% elsif booking.status = "declined"%>
+            <%= button_to "dismiss booking request", booking_path(booking), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-danger"%>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
