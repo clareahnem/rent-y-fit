@@ -34,6 +34,11 @@ class BookingsController < ApplicationController
         redirect_to bookings_path, notice: "Booking request was successfully destroyed"
     end
 
+    def dashboard
+        @items = Items.where(user_id: current_user.id)
+        @requesteditems = Booking.join(:items).where(items: {user_id: current_user.id}. bookings: {status:pending}).eager_load(:item)
+    end
+
 
     private 
     def set_item
