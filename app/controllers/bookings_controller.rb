@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
     before_action :set_item, only: [:create]
-    before_action :set_booking, only: [:destroy]
+    before_action :set_booking, only: [:destroy, :edit, :update]
     def index
         # want to show all items that pending user's booking request
         @pendingitems = Booking.where(status: "pending", requesting_user_id: current_user.id).eager_load(:item)
@@ -24,6 +24,8 @@ class BookingsController < ApplicationController
     end
 
     def update
+        @booking.update_column(:status, params[:status])
+        redirect_back fallback_location: dashboard_path, notice:"Booking status was successfully updated"
     end
 
     def edit
@@ -45,4 +47,5 @@ class BookingsController < ApplicationController
     def booking_params
         params.require(:booking).permit(:requesting_user_id, :status, :no_of_days, :start_date)
     end
+    
 end
