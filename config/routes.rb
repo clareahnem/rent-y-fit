@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get '/about', to: 'pages#about', as: 'about'
   get '/dashboard', to: 'pages#dashboard', as:'dashboard'
+  get '/success', to: 'payments#success', as: 'payments_success'
+  post '/payments/webhook', to: 'payments#webhook', as: 'payments_webhook'
   
   
 
