@@ -1,1 +1,46 @@
-<h1>show booking request page</h1>
+
+<div class = "container">
+  <div class="row">
+    <div class="col-7">
+      <h2 class='pb-4'>
+        <strong><%= @item.name %></strong>
+      </h2>
+
+      <p>
+        <%= @item.description %>
+      </p>
+
+      <p>
+        <strong>Listed by:</strong>
+        <%= @item.user.username %>
+      </p>
+
+      <p>
+        <strong>Category:</strong>
+        <%= @item.category.name %>
+      </p>
+
+      <p>
+        <strong>Condition:</strong>
+        <%= @item.condition.capitalize %>
+      </p><br />
+        <% if @booking.status == "approved"%>
+            <h4 class="pb-4">Booking Confirmed For:</h4>
+            <p><strong>Start date:</strong>
+                <%= @booking.start_date %>
+            </p>
+            <p><strong>Number of days to rent:</strong>
+                <%= @booking.no_of_days %>
+            </p>
+            <h5 class="price-show"><strong>$<%= price_to_dollars(@item.price_per_day)%></strong>/day +</h5>
+            <p class="price-show"> $<%= price_to_dollars(@item.deposit)%> Deposit</p>
+
+            <h5 class="pt-4">Total price: $<%=price_to_dollars((@booking.no_of_days * @item.price_per_day) + @item.deposit)%></h5>
+        <% end %>
+    </div>
+    <div class="col-6 col-md-5">
+      <%# uses helper_method to display uploaded image or logo %>
+      <%= image_tag product_image(@item), class:"show-image"%>
+  </div>
+  </div>
+</div>

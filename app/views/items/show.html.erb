@@ -38,7 +38,7 @@
             <p>This Item is currently not available for rent.</p>
           <% end %>
         <% elsif !user_signed_in? %>
-          <%# if user is not signed in display burron to sign in %>
+          <%# if user is not signed in display button to sign in %>
           <%= button_to "Log In to Rent", new_user_session_path, class:"btn bg-info m-2"%>
         <% end%>
       </div>
