@@ -37,16 +37,7 @@
 
             <h5 class="pt-4">Total price: $<%=price_to_dollars((@booking.no_of_days * @item.price_per_day) + @item.deposit)%></h5>
             <%# button for payment using stripe %>
-            <button data-stripe="payment" class="btn btn-primary p-3">Make payment to confirm Rent</button>
-            <script src="https://js.stripe.com/v3/"></script>
-            <script>
-                document.querySelector("[data-stripe='payment']").addEventListener("click", () => {
-                    const stripe = Stripe("<%=Rails.application.credentials.dig(:stripe, :public_key) %>");
-                    stripe.redirectToCheckout({
-                        sessionId: "<%= @session_id %>"
-                    });
-                });
-            </script>
+            <%= button_to "Proceed to payment", create_payment_intent_path, method: :post, remote: true, params:{id: @booking.id}, class:"btn btn-primary p-3"%>
         <% end %>
     </div>
     <div class="col-6 col-md-5">
