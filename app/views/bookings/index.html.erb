@@ -11,14 +11,14 @@
 <% if @approveditems.count > 0%>
 <div>
 <h2>Items approved by owner for rent(<%=@approveditems.count%>)</h2>
-<%= render "shared/bookingcard", items:@approveditems%>
+<%= render "shared/bookingcard", bookings:@approveditems%>
 </div>
 <% end %>
 
 <% if @declineditems.count > 0 %>
 <div>
 <h2>Declined rent requests(<%=@approveditems.count%>)</h2>
-<%= render "shared/bookingcard", items:@declineditems %>
+<%= render "shared/bookingcard", bookings:@declineditems %>
 </div>
 <% end %> 
 
