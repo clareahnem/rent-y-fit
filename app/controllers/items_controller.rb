@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: %i[ show edit update destroy ]
+  before_action :set_item, only: %i[ show edit update destroy switch_availability]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_variables, only: [:new, :edit]
 
@@ -58,6 +58,15 @@ class ItemsController < ApplicationController
       format.html { redirect_to items_url, notice: "Item was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def switch_availability
+    if @item.availability == true
+      @item.update_column(:availability, false)
+    elsif @item.availability == false
+      @item.update_column(:availability, true)
+    end
+    redirect_back fallback_location: dashboard_path, notice:"Availability was successfully updated"
   end
 
   private
