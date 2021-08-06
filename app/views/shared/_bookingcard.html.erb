@@ -26,7 +26,8 @@
         <% end%>
 
         <% if booking.item.user_id == current_user.id%>
-
+          <p>Currently Available: <strong><%=booking.item.availability %></strong></p>
+          <%= link_to "Switch availability", switch_availability_item_path(booking.item), class:"btn bg-info"%>
         <% end %>
       </div>
     </div>

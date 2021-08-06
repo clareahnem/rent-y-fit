@@ -66,7 +66,6 @@ class ItemsController < ApplicationController
     elsif @item.availability == false
       @item.update_column(:availability, true)
     end
-    @item.update_column(:availability, false)
     redirect_back fallback_location: dashboard_path, notice:"Availability was successfully updated"
   end
 
