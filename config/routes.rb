@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'pages#dashboard', as:'dashboard'
   get '/success', to: 'payments#success', as: 'payments_success'
   post '/payments/webhook', to: 'payments#webhook', as: 'payments_webhook'
-  
+  post '/payments', to: 'payments#create_payment_intent', as: 'create_payment_intent'
   
 
 end

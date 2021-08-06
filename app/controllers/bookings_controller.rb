@@ -23,26 +23,7 @@ class BookingsController < ApplicationController
 
     def show
         #==========shows item's booking. Requesting user can proceed to payment through here==========
-        session = Stripe::Checkout::Session.create(
-            payment_method_types: ['card'],
-            customer_email: current_user.email,
-            line_items: [{
-                name: @item.name,
-                description: @item.description,
-                amount: ((@item.price_per_day * @booking.no_of_days) + @item.deposit),
-                currency: 'aud',
-                quantity: 1
-            }],
-            payment_intent_data: {
-                metadata: {
-                    booking_id: @booking.id,
-                    user_id: current_user&.id
-                }
-            },
-            success_url: "#{root_url}/success?id=#{@booking.id}",
-            cancel_url: "#{root_url}/dashboard"
-        )
-        @session_id = session.id
+        
     end
 
     def update
