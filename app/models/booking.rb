@@ -4,7 +4,7 @@ class Booking < ApplicationRecord
   has_one :order
 
   # attributes and place values
-  enum status: {declined: 0, pending: 1, approved: 2}
+  enum status: {declined: 0, pending: 1, approved: 2, paid: 3}
 
   # validations
   validates :status, presence: true
