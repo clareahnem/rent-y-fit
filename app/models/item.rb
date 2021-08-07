@@ -2,9 +2,9 @@ class Item < ApplicationRecord
   # associations
   belongs_to :user
   belongs_to :category
-  has_many :items_brands
+  has_many :items_brands, dependent: :destroy
   has_many :brands, through: :items_brands
-  has_many :bookings
+  has_many :bookings, dependent: :destroy
   has_many :orders, through: :bookings
 
   # attributes and place values

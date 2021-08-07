@@ -1,7 +1,7 @@
 class Booking < ApplicationRecord
   belongs_to :item
   belongs_to :requesting_user, foreign_key: 'requesting_user_id', class_name: "User"
-  has_one :order
+  has_one :order, dependent: :destroy
 
   # attributes and place values
   enum status: {declined: 0, pending: 1, approved: 2, paid: 3}
