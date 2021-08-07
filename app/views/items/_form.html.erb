@@ -51,12 +51,12 @@
   <p>It's always a good idea to take deposits from customers in case they lose or damage your items. You will pay this back to the customer once the item is returned to you.</p>
   <div class="field">
     <%= form.label :deposit, "Deposit($dd.cc)"%>
-    <%= form.number_field :deposit %>
+    <%= form.number_field :deposit, step: "0.01"%>
   </div>
 
   <div class="field">
     <%= form.label :price_per_day, "Price rate per day ($dd.cc)"%>
-    <%= form.number_field :price_per_day %>
+    <%= form.number_field :price_per_day, step: "0.01" %>
   </div>
 
   <h5> Upload an image</h5>
