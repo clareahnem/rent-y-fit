@@ -3,10 +3,9 @@
 <% if @pendingitems.count > 0%>
     <%= render "shared/bookingcard", bookings:@pendingitems%>
 <% else %>
-<h3>There are currently no items pending booking request.</h3>
+<p>There are currently no items pending booking request.</p>
 <% end%>
 </div>
-
 
 <% if @approveditems.count > 0%>
 <div>
@@ -21,5 +20,20 @@
 <%= render "shared/bookingcard", bookings:@declineditems %>
 </div>
 <% end %> 
+
+<div>
+<h2>Rent-y-FiT on your way(<%=@upcoming.count%>)</h2>
+<%= render "shared/bookingcard", bookings:@upcoming %>
+</div>
+
+<div>
+<h2>FiTs you are Currently Renting(<%=active_orders(@paiditems).count%>)</h2>
+<%= render "shared/bookingcard", bookings:active_orders(@paiditems) %>
+</div>
+
+<div>
+<h2>Past Orders(<%=completed_orders(@paiditems).count%>)</h2>
+<%= render "shared/bookingcard", bookings:completed_orders(@paiditems) %>
+</div>
 
 

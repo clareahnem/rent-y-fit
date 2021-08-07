@@ -4,13 +4,17 @@ class BookingsController < ApplicationController
     def index
         # =========displays "your bookings" page========
         # want to show all items that pending user's booking request
-        @pendingitems = Booking.where(status: "pending", requesting_user_id: current_user.id).eager_load(:item)
+        @pendingitems = Booking.includes(:item).where(status: "pending", requesting_user_id: current_user.id)
         
         # show all items where booking has been approved by owner
-        @approveditems = Booking.where(status: "approved", requesting_user_id: current_user.id).eager_load(:item)
+        @approveditems = Booking.includes(:item).where(status: "approved", requesting_user_id: current_user.id)
 
         #show all items where booking has been declined by owner
-        @declineditems = Booking.where(status: "declined", requesting_user_id: current_user.id).eager_load(:item)
+        @declineditems = Booking.includes(:item).where(status: "declined", requesting_user_id: current_user.id)
+
+        # show all bookings that are confirmed and paid
+        @paiditems = Booking.includes(:item).where(status: "paid", requesting_user_id: current_user.id)
+        @upcoming = @paiditems.where("start_date >  ?", Date.today)
     end
 
     def create

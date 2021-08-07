@@ -1,7 +1,23 @@
 <h1>My Dashboard</h1>
 <div>
-    <h2>New Rent requests</h2>
+    <h2>New Rent requests(<%=@requesteditems.count%>)</h2>
     <%= render 'shared/bookingcard', bookings:@requesteditems%>
+</div>
+<div>
+    <h2>Approved Rent requests pending payment(<%=@approveditems.count%>)</h2>
+    <%= render 'shared/bookingcard', bookings:@approveditems%>
+</div>
+<div>
+    <h2>Upcoming Orders(<%=@upcomingorders.count%>)</h2>
+    <%= render 'shared/bookingcard', bookings:@upcomingorders%>
+</div>
+<div>
+    <h2>Currently Active Orders(<%=active_orders(@paidbookings).count%>)</h2>
+    <%= render 'shared/bookingcard', bookings:active_orders(@paidbookings)%>
+</div>
+<div>
+    <h2>Completed Orders(<%=completed_orders(@paidbookings).count%>)</h2>
+    <%= render 'shared/bookingcard', bookings:completed_orders(@paidbookings)%>
 </div>
 <div>
     <h2>All FiTs uploaded by you</h2>

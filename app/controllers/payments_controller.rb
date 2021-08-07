@@ -9,8 +9,14 @@ class PaymentsController < ApplicationController
         payment_id = params[:data][:object][:payment_intent]
         payment = Stripe::PaymentIntent.retrieve(payment_id)
         booking_id = payment.metadata.booking_id
+        
         # user_id = payment.metadata.user_id
+        # ======= create a new order ==========
         Order.create(booking_id: booking_id, payment_id: payment_id, receipt_url: payment.charges.data[0].receipt_url)
+
+        # ======= update booking status to paid =======
+        booking = Booking.find(booking_id)
+        booking.update_column(:status, "paid")
     end
 
     def create_payment_intent

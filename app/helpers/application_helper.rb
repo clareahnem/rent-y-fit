@@ -15,4 +15,26 @@ module ApplicationHelper
             return 'info'
         end
     end
+
+    def active_orders(bookings)
+        activeorders = []
+        bookings.each do |booking|
+            end_date = booking.start_date.next_day(booking.no_of_days)
+            if booking.start_date.past? && end_date.future?
+                activeorders.push booking
+            end
+        end
+        return activeorders
+    end
+
+    def completed_orders(bookings)
+        completedorders = []
+        bookings.each do |booking|
+            end_date = booking.start_date.next_day(booking.no_of_days)
+            if end_date.past?
+                completedorders.push booking
+            end
+        end
+        return completedorders
+    end
 end
