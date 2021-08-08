@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+$grey-background: rgba(128, 128, 128, 0.8);
+$offwhite-background: rgba(243, 243, 243, 0.7);
 .opening {
     
     margin: 0 auto;
@@ -18,7 +20,7 @@
     font-family: 'Lato', sans-serif;
     margin: 3rem 0;
     padding: 3rem;
-    background: rgba(128, 128, 128, 0.8);
+    background: $grey-background;
     color: white;
     box-shadow: -2px 2px 2px grey;
     min-height: 35vh;
@@ -29,19 +31,25 @@
 }
 
 .about-top {
-    h1 {
-        text-align: center;
-        margin: 2rem;
-        font-weight: 900;
-        font-style: italic;
-        text-shadow: 2px 2px 2px red;
-    }
-    max-width: 70vw;
-    margin: 0 auto;
-    color: red;
-    min-height: 45vh;
-    p {
-        font-size: 1rem;
+    background: $offwhite-background;
+    padding: 3rem 0;
+    .text {
+        h1 {
+            text-align: center;
+            margin: 2rem;
+            font-weight: 900;
+            font-style: italic;
+            text-shadow: 2px 2px 2px red;
+            
+        }
+        color: red;
+        max-width: 70vw;
+        margin: 0 auto;
+        min-height: 45vh;
+        p {
+            text-shadow: 1px 1px rgb(255, 255, 255);
+            font-size: 1rem;
+        }   
     }
 
 }
@@ -53,9 +61,9 @@
         margin-bottom: 1.7rem;
         font-style: italic;
     }
-    background: grey;
+    background: $grey-background;
     color: white;
-    margin: 3rem 0;
+    // margin: 3rem 0;
     padding: 3rem;
     .about-renting {
         margin: 0 auto;

@@ -16,14 +16,16 @@
 
  @import "bootstrap/scss/bootstrap";
 
+    
 
  body {
     font-family: 'Lato', sans-serif;
     background-image: url('background-image.jpg');
     background-size: cover;
     .navbar{
-        background: rgb(226, 226, 226);
+        background: rgba(226, 226, 226, 0.9);
         .navbar-brand {
+            border-radius: 15px;
             &:hover {
                 background: white;
                 box-shadow: 0px 2px 1px rgb(224, 223, 223);
@@ -38,10 +40,15 @@
             font-weight: 700;
             font-style: italic;
             &:hover {
-                background: white;
+                background: rgb(251, 251, 251);
                 text-decoration: underline;
+                box-shadow: 0px 2px 1px rgb(224, 223, 223);
+                border-radius: 15px;
             }
+            border: none;
+            background: white;
         }
+        
     }
    
  }

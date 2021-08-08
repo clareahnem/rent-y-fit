@@ -2,13 +2,51 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+$grey-background: rgba(128, 128, 128, 0.8);
+$offwhite-background: rgba(243, 243, 243, 0.7);
 
-.show-image {
-    width: 35vw;
-    box-shadow: 2px 2px rgba(225, 225, 225, 0.6);
-    display: block;
+.show-item-main{
+    background: $offwhite-background;
+    padding-top: 2rem;
+    margin: 0 2rem 2rem 2rem;
+    text-shadow: 1px 1px 2px $grey-background;
+    .brands-pills{
+        span {
+            font-size: 14px;
+            padding: 8px;
+            display: inline;
+        }   
+    }   
+    p {
+        font-size: 16px;
+    }
+    .show-image {
+        width: 35vw;
+        box-shadow: 2px 2px rgba(225, 225, 225, 0.6);
+        display: block;
+    }
+
+    .price-show {
+        display: inline;
+    }
 }
 
-.price-show {
-    display: inline;
+.items-index-title {
+    margin: 0 auto;
+    h1 {
+        text-align: center;
+        margin: 2rem;
+        font-weight: 900;
+        font-size: 4rem;
+        font-style: italic;
+        color: red;
+        text-shadow: 2px 2px 2px rgb(222, 219, 219);
+    }
+}
+
+#request-form {
+    div {
+        font-weight: 700;
+        padding: 5px 0;
+    }
 }
