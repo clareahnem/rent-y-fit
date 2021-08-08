@@ -1,3 +1,4 @@
+
 <%= form_with(model: item, local: true) do |form| %>
   <% if item.errors.any? %>
     <div id="error_explanation">
@@ -12,60 +13,62 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :name, class:"label"%>
     <%= form.text_field :name %>
   </div>
   
   <div class="field mb-3"> 
+    <p class="label">Brand:</p>
       <%# choose from available brands (can choose multiple) %>
       <%=form.collection_check_boxes :brand_ids, @brands, :id, :name do |b|%>
         <%=b.check_box class: 'form-check-line mr-2'%>
         <%=b.label class: 'form-check-label'%>
       <% end %> <br>
-      <%# or if you can't find the brand, write it in %> %>
+      <%# or if you can't find the brand, write it in %>
       <%=form.fields_for :brands, @new_brands do |add_brand| %>
-        <%= add_brand.label :name, "Add  Brand:"%> 
+        <%= add_brand.label :name, "Or add a new Brand:"%> 
         <%= add_brand.text_field :name %>  
       <% end %>
     </div>
 
-  <div class="form-group mb-3 ml-2">
-    <%= form.label :category_id %>
+  <div class="field form-group">
+    <%= form.label :category_id, class:"label" %>
     <%= form.select :category_id, @categories.map {|c| [c.name, c.id]} %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
+    <%= form.label :description, class:"label" %>
     <%= form.text_area :description %>
   </div>
 
-  <p>Condition:</p>
+  
   <div class="field">
+    <p class="label">Condition:</p>
     <% @conditions.each do |c|%>
     <%= form.radio_button :condition, c %>
     <%= form.label :condition, c.capitalize%>
     <% end %>
   </div>
 
-  <h5>Price Setups</h5>
-  <p>It's always a good idea to take deposits from customers in case they lose or damage your items. You will pay this back to the customer once the item is returned to you.</p>
+  <h5 class="form-subsection">Price Setups:</h5>
+  <p>It's always a good idea to take deposits from customers in case they lose or damage your items, however is an optional step.</p>
   <div class="field">
-    <%= form.label :deposit, "Deposit($dd.cc)"%>
+    <%= form.label :deposit, "Deposit($dd.cc)", class:"label"%>
     <%= form.number_field :deposit, step: "0.01"%>
   </div>
 
   <div class="field">
-    <%= form.label :price_per_day, "Price rate per day ($dd.cc)"%>
+    <%= form.label :price_per_day, "Price rate per day ($dd.cc)", class:"label"%>
     <%= form.number_field :price_per_day, step: "0.01" %>
   </div>
 
-  <h5> Upload an image</h5>
+  <h5 class="form-subsection"> Upload an image:</h5>
   <div class='field'>
-  <%=form.label :picture%>
+  <%=form.label :picture, class:"label"%>
   <%= form.file_field :picture, accept: 'image/png, image/jpg, image/jpeg'%>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class:"btn btn-lg btn-primary"%>
   </div>
 <% end %>

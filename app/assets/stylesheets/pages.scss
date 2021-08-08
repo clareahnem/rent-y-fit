@@ -4,6 +4,18 @@
 
 $grey-background: rgba(128, 128, 128, 0.8);
 $offwhite-background: rgba(243, 243, 243, 0.7);
+
+@mixin title-font {
+    text-align: center;
+    margin: 2rem;
+    font-weight: 900;
+    font-size: 4rem;
+    font-style: italic;
+    color: red;
+    text-shadow: 2px 2px 2px rgb(222, 219, 219);
+}
+
+// ========= styling for root path =======
 .opening {
     
     margin: 0 auto;
@@ -30,6 +42,7 @@ $offwhite-background: rgba(243, 243, 243, 0.7);
     }
 }
 
+// ========== styling for abouts page =========
 .about-top {
     background: $offwhite-background;
     padding: 3rem 0;
@@ -73,4 +86,9 @@ $offwhite-background: rgba(243, 243, 243, 0.7);
             padding: 5px;
         }
     }
+}
+
+// ========= styling for dashboard ===========
+.dashboard-title {
+    @include title-font;
 }

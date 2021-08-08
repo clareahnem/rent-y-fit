@@ -1,37 +1,36 @@
-<div>
-<h1>Items pending rent approval (<%=@pendingitems.count%>)</h1>
+<h1 class="bookings-title">Your Fits Rent Cart Summary</h1>
+<div class="bookings-section grey round-top">
+<h2>Items pending rent approval (<%=@pendingitems.count%>)</h1>
 <% if @pendingitems.count > 0%>
     <%= render "shared/bookingcard", bookings:@pendingitems%>
-<% else %>
-<p>There are currently no items pending booking request.</p>
 <% end%>
 </div>
 
+<div class="bookings-section white">
 <% if @approveditems.count > 0%>
-<div>
 <h2>Items approved by owner for rent(<%=@approveditems.count%>)</h2>
 <%= render "shared/bookingcard", bookings:@approveditems%>
 </div>
 <% end %>
 
-<% if @declineditems.count > 0 %>
-<div>
+<div class="bookings-section grey">
 <h2>Declined rent requests(<%=@approveditems.count%>)</h2>
+<% if @declineditems.count > 0 %>
 <%= render "shared/bookingcard", bookings:@declineditems %>
-</div>
 <% end %> 
+</div>
 
-<div>
+<div class="bookings-section white">
 <h2>Rent-y-FiT on your way(<%=@upcoming.count%>)</h2>
 <%= render "shared/bookingcard", bookings:@upcoming %>
 </div>
 
-<div>
+<div class="bookings-section grey">
 <h2>FiTs you are Currently Renting(<%=active_orders(@paiditems).count%>)</h2>
 <%= render "shared/bookingcard", bookings:active_orders(@paiditems) %>
 </div>
 
-<div>
+<div class="bookings-section white round-bottom">
 <h2>Past Orders(<%=completed_orders(@paiditems).count%>)</h2>
 <%= render "shared/bookingcard", bookings:completed_orders(@paiditems) %>
 </div>

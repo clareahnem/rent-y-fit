@@ -1,15 +1,17 @@
 
-<h1>Payment Success</h1>
-<p>Thank you for your payment! Your Rent Booking for the Fit: <%=@order.booking.item.name%> has been confirmed!</p>
+<h1 class="success-title">Payment Success</h1>
+<main class="success-main">
+<p>Thank you for your payment! Your Rent Booking for the Fit: <strong><%=@order.booking.item.name%></strong> has been confirmed!</p>
 <p>View your order receipt here: <%=@order.receipt_url%></p>
 <p>Date of Delivery: <%=@order.booking.start_date%></p>
 <p>Days to Rent: <%=@order.booking.no_of_days%></p>
-<h4>Shipping Address:</h4>
+<h4 class="subtitle">Shipping Address:</h4>
 <p><%=@user_address.street_no%> <%=@user_address.street%>, <%=@user_address.suburb%>, VIC <%=@user_address.postcode%><p>
 
-<h4>Care Instructions on Renting</h4>
+<h4 class="subtitle">Care Instructions on Renting</h4>
 <p>It is important that you take very good care of the item you are renting.</p>
 <p>If you cause damage or loss the item/s in any way your deposit will not be returned to you.</p>
 <p>It may be a good idea to take photos of the item's condition at the point of delivery so that you are not liable for damage not caused by you.</p>
 <p>Happy renting!</p>
+</main>
 
