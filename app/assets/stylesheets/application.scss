@@ -45,9 +45,13 @@
     }
    
  }
- 
+ #bookings-card {
+     background: rgba(236, 103, 103, 0.9);
+ }
+
  .card {
-     max-height: 60vh;
+     max-height: 64vh;
+     overflow-y: auto;
      background: rgba(255, 255, 255, 0.9);
     .card-image {
         height: 50%;
@@ -79,6 +83,17 @@
            .btn {
                 margin-top: 15px;
             } 
+        }
+        .booking-buttons {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            text-align: right;
+            width: 88%;
+            p {
+                text-align: left;
+                font-weight: 900;
+            }
         }
     }
  }

@@ -1,6 +1,6 @@
 <div class="d-flex flex-wrap justify-content-around">
   <%bookings.each do |booking|%>
-    <div class="card bg-secondary mb-3 p-2" style="width: 22vw;">
+    <div class="card mb-3 p-2" id="bookings-card" style="width: 22vw;">
       <div class = "card-image m-auto align-self-center">
       <%# uses helper_method to display uploaded image or logo %>
       <%= image_tag product_image(booking.item), class:"index-image"%>
@@ -12,31 +12,31 @@
         <% end %>
         <p><strong>Start date:</strong> <%= booking.start_date%></p>
         <p><strong>Days to rent:</strong> <%= booking.no_of_days%></p>
-        <p><strong>$</strong><%= price_to_dollars(booking.item.price_per_day) %>/day</p>
+        <p><strong>$<%= price_to_dollars(booking.item.price_per_day) %></strong>  /day</p>
+        <div class="booking-buttons">
+          <% if booking.requesting_user_id == current_user.id%>
+            <% if booking.status == "pending"%>
+                <%= link_to "View FiT", item_path(booking.item), class:"btn btn-sm bg-white"%>
+                <%= button_to "Delete booking request", booking_path(booking), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-sm btn-danger"%>
+            <% elsif booking.status == "approved"%>
+                <%= link_to "Proceed to Order", item_booking_path(booking.item.id, booking.id), class:"btn btn-sm bg-success"%>
+            <% elsif booking.status == "declined"%>
+                <%= button_to "dismiss booking request", booking_path(booking), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-sm btn-danger"%>
+            <% end %>
+          <% end%>
 
-        <% if booking.requesting_user_id == current_user.id%>
-          <% if booking.status == "pending"%>
-              <%= link_to "View FiT", item_path(booking.item), class:"btn bg-white"%>
-              <%= button_to "Delete booking request", booking_path(booking), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-danger"%>
-          <% elsif booking.status == "approved"%>
-              <%= link_to "Proceed to Order", item_booking_path(booking.item.id, booking.id), class:"btn bg-white"%>
-          <% elsif booking.status == "declined"%>
-              <%= button_to "dismiss booking request", booking_path(booking), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-danger"%>
-          <% end %>
-        <% end%>
-
-        <% if booking.item.user_id == current_user.id%>
-          <p>Currently Available: <strong><%=booking.item.availability %></strong></p>
-          <%= link_to "Switch availability", switch_availability_item_path(booking.item), class:"btn bg-info"%>
-          <%# add form to approve or decline booking if status is pending %>
-          <% if booking.status == "pending"%>
-            <%= form_with url: booking_path(booking), method: :patch do |form|%>
-              <%= form.label :status, "Respond to booking"%>
-              <%= form.select :status, @statuses, selected: booking.status%>
-              <%= form.submit "Submit change"%>
+          <% if booking.item.user_id == current_user.id%>
+            <%= link_to display_availability(booking.item), switch_availability_item_path(booking.item), class:"btn btn-sm bg-info"%>
+            <%# add form to approve or decline booking if status is pending %>
+            <% if booking.status == "pending"%>
+              <%= form_with url: booking_path(booking), method: :patch do |form|%>
+                <p><%= form.label :status, "Respond to booking"%></p>
+                <%= form.select :status, @statuses, selected: booking.status%>
+                <%= form.submit "Submit Response", class:"btn bg-white btn-sm"%>
+              <% end %>
             <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>
     </div>
   <% end %>
