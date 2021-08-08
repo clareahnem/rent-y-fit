@@ -19,6 +19,8 @@
 
  body {
     font-family: 'Lato', sans-serif;
+    background-image: url('background-image.jpg');
+    background-size: cover;
     .navbar{
         background: rgb(226, 226, 226);
         .navbar-brand {
@@ -44,3 +46,39 @@
    
  }
  
+ .card {
+     max-height: 60vh;
+     background: rgba(255, 255, 255, 0.9);
+    .card-image {
+        height: 50%;
+        display: flex;
+        align-items: center;
+        .index-image {
+            max-height: 100%;
+            max-width: 100%;
+            overflow: hidden;
+            width: auto;
+            height: auto;
+            margin: auto;
+        }
+    }
+    .card-body {
+        padding: 15px 20px;
+        .card-title {
+            font-size: 18px;
+            font-weight: 500;
+        }
+        p {
+            margin: 0;
+            padding: 0;
+        }
+        .buttons {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+           .btn {
+                margin-top: 15px;
+            } 
+        }
+    }
+ }

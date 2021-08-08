@@ -1,6 +1,6 @@
 <div class="d-flex flex-wrap justify-content-around">
   <%items.each do |item|%>
-    <div class="card bg-secondary mb-3 p-2" style="width: 22vw;">
+    <div class="card mb-3 p-2" style="max-width: 280px;">
       <div class = "card-image m-auto align-self-center">
       <%# uses helper_method to display uploaded image or logo %>
       <%= image_tag product_image(item), class:"index-image"%>
@@ -8,12 +8,13 @@
       <div class="card-body mt-2">
         <h5 class="card-title"><%= item.name%></h5>
         <p><strong>Condition:</strong> <%= item.condition.capitalize%></p>
-        <p><strong>$</strong><%= price_to_dollars(item.price_per_day) %>/day</p>
-        <%= link_to "View FiT", item_path(item), class:"btn bg-white"%>
-        <% if item.user_id == current_user.id%>
-          <p>Currently Available: <strong><%=item.availability %></strong></p>
-          <%= link_to "Switch availability", switch_availability_item_path(item), class:"btn bg-info"%>
-        <% end%>
+        <p><strong>$<%= price_to_dollars(item.price_per_day) %></strong>/day</p>
+        <div class="buttons">
+          <% if item.user_id == current_user.id%>
+            <%= link_to display_availability(item), switch_availability_item_path(item), class:"btn bg-info btn-sm"%>
+          <% end%>
+          <%= link_to "View FiT", item_path(item), class:"btn btn-outline-dark btn-sm"%>
+        </div>
       </div>
     </div>
   <% end %>

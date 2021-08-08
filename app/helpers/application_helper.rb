@@ -37,4 +37,11 @@ module ApplicationHelper
         end
         return completedorders
     end
+
+    def display_availability(item)
+        if item.availability?
+            return "Make FiT Unavailable"
+        end
+        return "Make FiT Available"
+    end
 end
