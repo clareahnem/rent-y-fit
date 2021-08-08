@@ -1,25 +1,25 @@
-<h1>My Dashboard</h1>
-<div>
+<h1 class="dashboard-title">My Dashboard</h1>
+<div class="white dash-section round-top">
     <h2>New Rent requests(<%=@requesteditems.count%>)</h2>
     <%= render 'shared/bookingcard', bookings:@requesteditems%>
 </div>
-<div>
+<div class="grey dash-section">
     <h2>Approved Rent requests pending payment(<%=@approveditems.count%>)</h2>
     <%= render 'shared/bookingcard', bookings:@approveditems%>
 </div>
-<div>
+<div class="white dash-section">
     <h2>Upcoming Orders(<%=@upcomingorders.count%>)</h2>
     <%= render 'shared/bookingcard', bookings:@upcomingorders%>
 </div>
-<div>
+<div class="grey dash-section">
     <h2>Currently Active Orders(<%=active_orders(@paidbookings).count%>)</h2>
     <%= render 'shared/bookingcard', bookings:active_orders(@paidbookings)%>
 </div>
-<div>
+<div class="white dash-section">
     <h2>Completed Orders(<%=completed_orders(@paidbookings).count%>)</h2>
     <%= render 'shared/bookingcard', bookings:completed_orders(@paidbookings)%>
 </div>
-<div>
+<div class="grey dash-section round-bottom">
     <h2>All FiTs uploaded by you</h2>
     <%= render 'shared/itemcard', items:@items%>
 </div>

@@ -1,10 +1,16 @@
-
+<main class="show-item-main">
 <div class = "container">
   <div class="row">
     <div class="col-7">
       <h2 class='pb-4'>
         <strong><%= @item.name %></strong>
       </h2>
+
+      <div class="brands-pills mb-3">
+        <% @item.brands.each do |brand| %>
+        <span class="badge badge-pill badge-secondary"><%=brand.name%></span>
+        <% end %>
+      </div>
 
       <p>
         <%= @item.description %>
@@ -14,12 +20,7 @@
         <strong>Listed by:</strong>
         <%= @item.user.username %>
       </p>
-
-      <p>
-        <strong>Category:</strong>
-        <%= @item.category.name %>
-      </p>
-
+    
       <p>
         <strong>Condition:</strong>
         <%= @item.condition.capitalize %>
@@ -28,7 +29,7 @@
       <h5 class="price-show"><strong>$<%= price_to_dollars(@item.price_per_day)%></strong>/day +</h5>
       <p class="price-show"> $<%= price_to_dollars(@item.deposit)%> Deposit</p>
 
-      <div class ='row mt-4'>
+      <div class ='row mt-4 px-3'>
         <% if user_signed_in? && (current_user.id != @item.user_id) %>
           <% if @item.availability?%>
             <%# if user is signed in and availableitem shown is not theirs, display a booking request form%>
@@ -47,12 +48,14 @@
       <%# uses helper_method to display uploaded image or logo %>
       <%= image_tag product_image(@item), class:"show-image"%>
       <div class='row p-3'>
+        <%= link_to 'Back', items_path, class:"btn bg-light m-2" %>
         <% if user_signed_in? && (current_user.id == @item.user_id) %>
           <%# is the item is posted by this user display edit and delete buttons %>
           <%= link_to 'Edit', edit_item_path(@item), class:"btn bg-warning m-2"%>
-          <%= link_to 'Back', items_path, class:"btn bg-danger m-2" %>
+          <%= button_to 'Delete FiT', item_path(@item), method: :delete, data: {confirm: "Are you sure?"}, class:"btn bg-danger m-2" %>
         <% end %>
       </div>
-  </div>
+    </div>
   </div>
 </div>
+</main>

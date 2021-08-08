@@ -2,13 +2,56 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-
-.show-image {
-    width: 35vw;
-    box-shadow: 2px 2px rgba(225, 225, 225, 0.6);
-    display: block;
+$grey-background: rgba(128, 128, 128, 0.8);
+$offwhite-background: rgba(243, 243, 243, 0.7);
+@mixin title-font {
+    text-align: center;
+    margin: 2rem;
+    font-weight: 900;
+    font-size: 4rem;
+    font-style: italic;
+    color: red;
+    text-shadow: 2px 2px 2px rgb(222, 219, 219);
 }
 
-.price-show {
-    display: inline;
+// ======= styling items show page =========
+
+#request-form {
+    div {
+        font-weight: 700;
+        padding: 5px 0;
+    }
+}
+
+// ======= styling items index page =======
+.items-index-title {
+    margin: 0 auto;
+    h1 {
+        @include title-font;
+    }
+}
+
+
+
+// ========== styling for items form partial ========
+.itemsform-title {
+    @include title-font;
+}
+.form-main {
+ background: $grey-background;
+ color: white;
+ .field {
+    margin: 2rem 0;
+    .label {
+        font-weight: 700;
+        font-size: 20px;
+        display: block;
+    }
+ }
+ .form-subsection {
+     font-size: 23px;
+     font-weight: 700;
+     text-shadow: 1px 1px 2px $offwhite-background;
+     text-decoration: underline;
+ }
 }

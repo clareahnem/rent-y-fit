@@ -1,3 +1,4 @@
+<div id="request-form">
 <%= form_with model: [item, booking] do |form| %>
     <div>
     <%= form.label :start_date, "Start date:"%>
@@ -8,6 +9,7 @@
     <%= form.number_field :no_of_days, in: 1..30, step: 1 %>
     </div>
     <div>
-    <%=form.submit "Submit Rent Request" %>
+    <%=form.submit "Submit Rent Request", class:"btn btn-primary btn-lg"%>
     </div>
 <% end %>
+</div>

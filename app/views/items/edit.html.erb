@@ -1,6 +1,7 @@
-<h1>Edit Item</h1>
+<h1 class="itemsform-title">Edit FiT</h1>
+<main class="form-main m-5 p-5">    
+    <%= render 'form', item: @item %>
 
-<%= render 'form', item: @item %>
-
-<%= button_to 'Show', @item %> |
-<%= button_to 'Back', items_path %>
+    <%= button_to 'Show', @item, class:"btn btn-secondary" %> |
+    <%= button_to 'Cancel', items_path, class:"btn btn-dark" %>
+</main>

@@ -1,69 +1,70 @@
-<h2>Sign up</h2>
-
+<h2 class="devise-title">Sign up</h2>
+<main class="devise-form-main">
 <%= nested_form_for([resource_name, resource.with_address], url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :username %><br />
+    <%= f.label :username, class:"devise-label" %><br />
     <%= f.text_field :username, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :first_name %><br />
+    <%= f.label :first_name, class:"devise-label"%><br />
     <%= f.text_field :first_name, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :last_name %><br />
+    <%= f.label :last_name, class:"devise-label" %><br />
     <%= f.text_field :last_name, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email, class:"devise-label" %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :password, class:"devise-label" %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password", class:"devise-label" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.label :password_confirmation, class:"devise-label" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"devise-label" %>
   </div>
 
   <%# nested form for address fields %>
   <%= f.fields_for :address do |nest_f| %>
-    <p>Your Address</p>
+    <h4 class="subsection">Your Address:</h4>
     <div class="field">
-      <%= nest_f.label :street_no %><br />
+      <%= nest_f.label :street_no, class:"devise-label" %><br />
       <%= nest_f.text_field :street_no, autofocus: true %>
     </div>
 
     <div class="field">
-      <%= nest_f.label :street %><br />
+      <%= nest_f.label :street, class:"devise-label" %><br />
       <%= nest_f.text_field :street, autofocus: true %>
     </div>
 
     <div class="field">
-      <%= nest_f.label :suburb %><br />
+      <%= nest_f.label :suburb, class:"devise-label" %><br />
       <%= nest_f.text_field :suburb, autofocus: true %>
     </div>
 
     <div class="field">
-      <%= nest_f.label :postcode %><br />
+      <%= nest_f.label :postcode, class:"devise-label" %><br />
       <%= nest_f.text_field :postcode, autofocus: true %>
     </div>
 
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class:"btn btn-primary" %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+</main>
