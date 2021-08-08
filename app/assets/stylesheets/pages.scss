@@ -3,12 +3,13 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .opening {
+    
     margin: 0 auto;
     text-align: center;
     font-weight: 900;
     font-style: italic;
     color: red;
-    text-shadow: -2px 2px 4px red;
+    text-shadow: -2px 2px 3px rgb(62, 15, 15);
     .home-image {
         width: 50vw;
     }
@@ -17,7 +18,7 @@
     font-family: 'Lato', sans-serif;
     margin: 3rem 0;
     padding: 3rem;
-    background: grey;
+    background: rgba(128, 128, 128, 0.8);
     color: white;
     box-shadow: -2px 2px 2px grey;
     min-height: 35vh;
