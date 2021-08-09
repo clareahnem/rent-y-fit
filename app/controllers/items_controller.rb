@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
 
   # GET /items or /items.json
   def index
-    @items = Item.includes(:user).where(availability: true)
+    @items = Item.includes(:user).where(availability: TRUE)
   end
 
   # GET /items/1 or /items/1.json
@@ -61,10 +61,10 @@ class ItemsController < ApplicationController
   end
 
   def switch_availability
-    if @item.availability == true
-      @item.update_column(:availability, false)
-    elsif @item.availability == false
-      @item.update_column(:availability, true)
+    if @item.availability == TRUE
+      @item.update_column(:availability, FALSE)
+    elsif @item.availability == FALSE
+      @item.update_column(:availability, TRUE)
     end
     redirect_back fallback_location: dashboard_path, notice:"Availability was successfully updated"
   end
