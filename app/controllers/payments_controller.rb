@@ -40,7 +40,7 @@ class PaymentsController < ApplicationController
                 }
             },
             success_url: "#{root_url}/success?id=#{booking.id}",
-            cancel_url: "#{root_url}/dashboard"
+            cancel_url: "#{root_url}/bookings"
         )
         @session_id = session.id
     end
