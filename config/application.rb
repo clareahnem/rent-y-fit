@@ -23,6 +23,7 @@ module RentYFit
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
+    config.serve_static_assets = true
 
     # Configuration for the application, engines, and railties goes here.
     #
