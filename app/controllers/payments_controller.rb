@@ -1,9 +1,10 @@
 class PaymentsController < ApplicationController
     skip_before_action :verify_authenticity_token, only: [:webhook]
-    before_action :authenticate_user!
+    
     def success
         @order = Order.includes(:booking => :item).find_by_booking_id(params[:id])
         @user_address = Address.find_by(user_id: @order.booking.requesting_user_id)
+       
     end
 
     def webhook

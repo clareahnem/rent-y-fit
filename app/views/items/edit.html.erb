@@ -2,6 +2,6 @@
 <main class="form-main m-5 p-5">    
     <%= render 'form', item: @item %>
 
-    <%= button_to 'Show', @item, class:"btn btn-secondary" %> |
-    <%= button_to 'Cancel', items_path, class:"btn btn-dark" %>
+    <%= link_to 'Show', @item, class:"btn btn-secondary" %> |
+    <%= link_to 'Cancel', items_path, class:"btn btn-dark" %>
 </main>
