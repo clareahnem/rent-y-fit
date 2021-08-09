@@ -10,8 +10,8 @@ class Item < ApplicationRecord
   # attributes and place values
   enum condition: {distressed: 0, good: 1, excellent: 2, unworn: 3}
   has_one_attached :picture
-  accepts_nested_attributes_for :items_brands
-  accepts_nested_attributes_for :brands
+  accepts_nested_attributes_for :items_brands, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :brands, reject_if: :all_blank
 
   
   # private methods
@@ -34,11 +34,12 @@ class Item < ApplicationRecord
     self.deposit = (self.attributes_before_type_cast["deposit"].to_f * 100).round
   end
 
-  # adds new brand if user inputs new brand name 
-  def brands_attributes=(brand_attributes)
+
+  # adds new brand if user inputs new brand name
+  def items_brands_attributes=(items_brands_attributes)
     # because params are passed as a hash we use .values.each
-    brands_attributes.values.each do |brand_attribute|
-      brand = Brand.find_or_create_by(brand_attribute)
+    items_brands_attributes.values.each do |brand_attribute|
+      brand = Brand.find_or_create_by(name:brand_attribute["brand_attributes"]["name"])
       self.brands << brand
     end
   end
