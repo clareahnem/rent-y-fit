@@ -1,6 +1,7 @@
 class BookingsController < ApplicationController
     before_action :set_item, only: [:create, :show]
     before_action :set_booking, only: [:show, :destroy, :edit, :update]
+    before_action :authenticate_user!
     def index
         # =========displays "your bookings" page========
         # want to show all items that pending user's booking request

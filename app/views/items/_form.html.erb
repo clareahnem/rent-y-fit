@@ -25,12 +25,10 @@
         <%=b.label class: 'form-check-label'%>
       <% end %> <br>
       <%# or if you can't find the brand, write it in %>
-      <%# <%=form.fields_for :items_brands, @new_brands do |items_brand_form|%> 
         <%=form.fields_for :brands, item.brands.build do |add_brand| %>
           <%= add_brand.label :name, "Or add a new Brand:"%> 
           <%= add_brand.text_field :name %>  
-        <%# <% end %>
-      <% end %>
+        <% end %>
     </div>
 
   <div class="field form-group">

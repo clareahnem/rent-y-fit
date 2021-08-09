@@ -20,6 +20,6 @@
     <%= render 'shared/bookingcard', bookings:completed_orders(@paidbookings)%>
 </div>
 <div class="grey dash-section round-bottom">
-    <h2>All FiTs uploaded by you</h2>
+    <h2>All FiTs uploaded by <%= current_user.username %></h2>
     <%= render 'shared/itemcard', items:@items%>
 </div>
