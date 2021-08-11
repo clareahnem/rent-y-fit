@@ -18,13 +18,8 @@
           <% if booking.item.user_id == current_user.id%>
             <%= link_to display_availability(booking.item), switch_availability_item_path(booking.item), class:"btn btn-sm bg-info"%>
             <%# add form to approve or decline booking if status is pending %>
-            <% if booking.status == "pending"%>
-              <%= form_with url: booking_path(booking), method: :patch do |form|%>
-                <p><%= form.label :status, "Respond to booking"%></p>
-                <%= form.select :status, @statuses, selected: booking.status%>
-                <%= form.submit "Submit Response", class:"btn bg-white btn-sm"%>
-              <% end %>
-            <% end %>
+            <%= render 'shared/bookingresponse', booking:booking, statuses:@statuses %>
+            
           <% end %>
 
           <% if booking.requesting_user_id == current_user.id%>

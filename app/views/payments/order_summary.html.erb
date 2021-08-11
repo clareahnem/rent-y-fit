@@ -2,7 +2,7 @@
 
 <main class="order-main p-3">
     <h2>Order summary for <strong><%=@order.booking.item.name%></strong></h2>
-    <p>FiT uploaded by:<%=@order.booking.item.user.username%></p>
+    <p>FiT uploaded by: <%=@order.booking.item.user.username%></p>
     <h2 class ="subtitle">Order made by: <%= @order.booking.requesting_user.username%></h2>
 
     <p>Date of Delivery: <%=@order.booking.start_date%></p>
@@ -19,5 +19,5 @@
         <%= render 'directions' %>
     <% end %>
  
-    <span><%= link_to "Back", :back, class:"btn btn-sml btn-outline-dark" %></span>
+    <span><%= link_to "Back", :back, class:"btn btn-sml btn-outline-dark bg-secondary" %></span>
 </main>

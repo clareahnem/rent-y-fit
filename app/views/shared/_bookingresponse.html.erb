@@ -1,0 +1,7 @@
+<% if booking.status == "pending"%>
+    <%= form_with url: booking_path(booking), method: :patch do |form|%>
+    <p><%= form.label :status, "Respond to booking"%></p>
+    <%= form.select :status, statuses, selected: booking.status%>
+    <%= form.submit "Submit Response", class:"btn bg-white btn-sm"%>
+    <% end %>
+<% end %>
