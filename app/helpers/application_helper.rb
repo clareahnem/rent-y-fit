@@ -20,7 +20,7 @@ module ApplicationHelper
         activeorders = []
         bookings.each do |booking|
             end_date = booking.start_date.next_day(booking.no_of_days)
-            if booking.start_date.past? && end_date.future?
+            if booking.start_date.past? && end_date.future? 
                 activeorders.push booking
             end
         end

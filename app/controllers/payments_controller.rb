@@ -5,7 +5,6 @@ class PaymentsController < ApplicationController
     def success
         @order = Order.includes(:booking => :item).find_by_booking_id(params[:id])
         @user_address = Address.find_by(user_id: @order.booking.requesting_user_id)
-       
     end
 
     def order_summary
