@@ -21,6 +21,8 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
+    @item.price_per_day /= 100.00
+    @item.deposit /= 100.00
   end
 
   # POST /items or /items.json

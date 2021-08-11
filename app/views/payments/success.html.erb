@@ -2,7 +2,7 @@
 <h1 class="success-title">Payment Success</h1>
 <main class="success-main">
 <p>Thank you for your payment! Your Rent Booking for the Fit: <strong><%=@order.booking.item.name%></strong> has been confirmed!</p>
-<p>View your order receipt here: <%=@order.receipt_url%></p>
+<p>View your order receipt here: <%=link_to "Show Receipt", @order.receipt_url, class:"btn btn-info"%></p>
 <p>Date of Delivery: <%=@order.booking.start_date%></p>
 <p>Days to Rent: <%=@order.booking.no_of_days%></p>
 <h4 class="subtitle">Shipping Address:</h4>
