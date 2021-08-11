@@ -2,26 +2,29 @@
 <%#    form to edit address information    %>
 <%# ====================================== %>
 
-<%=form_with(model: @address, local: true) do |form|%>
+<main class="addresses-form">
+  <%=form_with(model: @address, local: true) do |form|%>
+  <h2 class="subsection pb-3">Edit Address:</h2>
+  <div class="field">
+      <%= form.label :street_no, class:"label"%>
+      <%= form.text_field :street_no %>
+    </div>
+    <div class="field">
+      <%= form.label :street, class:"label"%>
+      <%= form.text_field :street %>
+    </div>
+    <div class="field">
+      <%= form.label :suburb, class:"label"%>
+      <%= form.text_field :suburb %>
+    </div>
+    <div class="field">
+      <%= form.label :postcode, class:"label"%>
+      <%= form.text_field :postcode %>
+    </div>
 
- <div class="field">
-    <%= form.label :street_no, class:"label"%>
-    <%= form.text_field :street_no %>
-  </div>
-  <div class="field">
-    <%= form.label :street, class:"label"%>
-    <%= form.text_field :street %>
-  </div>
-  <div class="field">
-    <%= form.label :suburb, class:"label"%>
-    <%= form.text_field :suburb %>
-  </div>
-  <div class="field">
-    <%= form.label :postcode, class:"label"%>
-    <%= form.text_field :postcode %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit class:"btn btn-lg btn-primary"%>
-  </div>
-<% end%>
+    <div class="actions">
+      <%= form.submit class:"btn btn btn-primary"%>
+    </div>
+  <% end%>
+  <%= link_to "Cancel", :back, class:"btn bg-white btn-outline-dark"%>
+</main>
