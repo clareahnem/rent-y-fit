@@ -14,6 +14,6 @@ Rails.application.routes.draw do
   get '/success', to: 'payments#success', as: 'payments_success'
   post '/payments/webhook', to: 'payments#webhook', as: 'payments_webhook'
   post '/payments', to: 'payments#create_payment_intent', as: 'create_payment_intent'
-  
+  get '/orders/:id', to: 'payments#order_summary', as: 'order'
 
 end

@@ -36,6 +36,10 @@
               <% end %>
             <% end %>
           <% end %>
+
+          <% if !booking.order.nil?%>
+            <%= link_to "Order Details", order_path(booking.order), class:"btn btn-sm bg-info"%>
+          <% end %>
         </div>
       </div>
     </div>

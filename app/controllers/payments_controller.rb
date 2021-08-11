@@ -7,6 +7,9 @@ class PaymentsController < ApplicationController
        
     end
 
+    def order_summary
+    end
+
     def webhook
         payment_id = params[:data][:object][:payment_intent]
         payment = Stripe::PaymentIntent.retrieve(payment_id)
