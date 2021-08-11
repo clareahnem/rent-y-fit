@@ -28,12 +28,12 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", class:"devise-label" %>
+    <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation, class:"devise-label" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"devise-label" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <%# nested form for address fields %>
