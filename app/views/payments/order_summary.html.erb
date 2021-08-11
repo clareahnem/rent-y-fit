@@ -1,0 +1,23 @@
+
+
+<main class="order-main p-3">
+    <h2>Order summary for <strong><%=@order.booking.item.name%></strong></h2>
+    <p>FiT uploaded by:<%=@order.booking.item.user.username%></p>
+    <h2 class ="subtitle">Order made by: <%= @order.booking.requesting_user.username%></h2>
+
+    <p>Date of Delivery: <%=@order.booking.start_date%></p>
+    <p>Days to Rent: <%=@order.booking.no_of_days%></p>
+    <h4 class="subtitle">Shipping Address:</h4>
+    <p><%=@user_address.street_no%> <%=@user_address.street%>, <%=@user_address.suburb%>, VIC <%=@user_address.postcode%><p>
+    
+    <%if @order.booking.requesting_user_id == current_user.id %>
+        <%= render 'instructions'%>
+        <h5>View your order receipt here: <%=link_to "Show Receipt", @order.receipt_url, class:"btn btn-info"%></h5> 
+    <% end%>
+
+    <% if @order.booking.item.user_id == current_user.id %>
+        <%= render 'directions' %>
+    <% end %>
+ 
+    <span><%= link_to "Back", :back, class:"btn btn-sml btn-outline-dark" %></span>
+</main>

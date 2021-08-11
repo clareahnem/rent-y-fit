@@ -21,6 +21,7 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
+    # show price in $dd.cc formar when editing as data is being saved in cents
     @item.price_per_day /= 100.00
     @item.deposit /= 100.00
   end
