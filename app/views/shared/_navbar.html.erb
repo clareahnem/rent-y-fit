@@ -28,7 +28,7 @@
                 <%=link_to "My Dashboard", dashboard_path, class: "dropdown-item"%>
                 <%=link_to "My Cart Summary", bookings_path, class: "dropdown-item"%>
                 <div class="dropdown-divider"></div>
-                <%=link_to "Edit Account", edit_user_registration_path, class: "dropdown-item"%>
+                <%=link_to "Account Settings", account_path(current_user), class: "dropdown-item"%>
               </div>
             </li>
             <li class="nav-item">
