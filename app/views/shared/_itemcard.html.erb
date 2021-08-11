@@ -2,7 +2,7 @@
   <%items.each do |item|%>
     <div class="card mb-3 p-2" style="max-width: 280px;">
       <div class = "card-image m-auto align-self-center">
-      <%# uses helper_method to display uploaded image or logo %>
+      <%# ============= uses helper_method to display uploaded image or logo ==============%>
       <%= image_tag product_image(item), class:"index-image"%>
       </div>
       <div class="card-body mt-2">
@@ -10,9 +10,11 @@
         <p><strong>Condition:</strong> <%= item.condition.capitalize%></p>
         <p><strong>$<%= price_to_dollars(item.price_per_day) %></strong>/day</p>
         <div class="buttons">
+          <%# ============ If item is listed by current user, show button to switch availability on/off ============ %>
           <% if user_signed_in? && item.user_id == current_user.id%>
             <%= link_to display_availability(item), switch_availability_item_path(item), class:"btn bg-info btn-sm"%>
           <% end%>
+          <%# ============= show link to item#show page ================ %>
           <%= link_to "View FiT", item_path(item), class:"btn btn-outline-dark btn-sm"%>
         </div>
       </div>

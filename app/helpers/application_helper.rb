@@ -44,4 +44,9 @@ module ApplicationHelper
         end
         return "Make FiT Available"
     end
+
+    def total_price(booking)
+        total = (booking.no_of_days * booking.item.price_per_day) + booking.item.deposit
+        return total
+    end
 end
