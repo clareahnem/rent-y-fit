@@ -8,6 +8,8 @@ class PaymentsController < ApplicationController
     end
 
     def order_summary
+        @order = Order.includes(:booking => :item).find(params[:id])
+        @user_address = Address.find_by(user_id: @order.booking.requesting_user_id)
     end
 
     def webhook
@@ -48,4 +50,6 @@ class PaymentsController < ApplicationController
         )
         @session_id = session.id
     end
+
+    
 end

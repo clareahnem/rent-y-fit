@@ -179,19 +179,21 @@
 .success-title {
     @include title-font;
 }
-.success-main {
+.success-main, .order-main {
     background: $grey-background;
-    padding-top: 2rem;
     margin: 0 3rem 3rem 3rem;
+    color: white;
+    h2, h5 {
+        text-decoration: underline;
+        font-style: italic;
+    }
     .subtitle {
         font-weight: 900;
         font-size: 1.5rem;
         font-style: italic;
-        color: rgb(247, 244, 244);
         text-decoration: underline;
     }
     p {
-        color: white;
         font-size: 16px;
     }
 }
