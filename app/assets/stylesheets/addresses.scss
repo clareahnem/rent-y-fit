@@ -1,0 +1,32 @@
+// Place all the styles related to the Addresses controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+$grey-background: rgba(128, 128, 128, 0.8);
+$offwhite-background: rgba(243, 243, 243, 0.7);
+
+.title {
+    text-align: center;
+    margin: 2rem;
+    font-weight: 900;
+    font-size: 3.5rem;
+    font-style: italic;
+    color: red;
+    text-shadow: 2px 2px 2px rgb(222, 219, 219);
+}
+.account-container {
+    background: $grey-background;
+    margin: 2rem 5rem;
+    padding: 2rem 5rem;
+    text-align: center;
+    .child {
+        color: rgb(236, 233, 233);
+        h3 {
+            text-decoration: underline;
+            padding-bottom: 1.8rem;
+        }
+        p {
+            font-size: 1rem;
+        }
+    }
+}

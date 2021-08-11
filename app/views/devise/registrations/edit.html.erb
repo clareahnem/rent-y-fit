@@ -2,7 +2,20 @@
 <main class="devise-form-main">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="field">
+    <%= f.label :username, class:"devise-label" %><br />
+    <%= f.text_field :username, autofocus: true %>
+  </div>
 
+  <div class="field">
+    <%= f.label :first_name, class:"devise-label"%><br />
+    <%= f.text_field :first_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name, class:"devise-label" %><br />
+    <%= f.text_field :last_name, autofocus: true %>
+  </div>
   <div class="field">
     <%= f.label :email, class:"devise-label" %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -32,13 +45,13 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Update", class"btn btn-warning" %>
+    <%= f.submit "Update", class:"btn btn-warning" %>
   </div>
 <% end %>
 
-<h3 class="subsection">Cancel my account</h3>
+<h2 class="subsection">Cancel my account</h2>
 
 <p class="devise-label">Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-<%= link_to "Back", :back %>
+<%= link_to "Back", :back, class:"btn btn-outline-dark btn-secondary" %>
 </main>

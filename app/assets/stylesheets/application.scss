@@ -44,7 +44,7 @@
         img {
             max-width: 100px;
         }
-        #navlink{
+        #navlink, #navbarDropdown {
             color: red;
             font-family: 'Lato', sans-serif;
             font-weight: 700;
@@ -198,11 +198,11 @@
     }
 }
 
-// ========= styling devise login-logout-signup page =========
+// ========= styling devise login-logout-signup page and addresses edit form=========
 .devise-title {
     @include title-font;
 }
-.devise-form-main {
+.devise-form-main, .addresses-form{
     background: $grey-background;
     margin: 2rem 5rem;
     padding: 2rem 5rem;
@@ -212,7 +212,7 @@
         font-weight: 700;
     }
     .field {
-        .devise-label, em {
+        .devise-label, em, .label {
             color: white;
             font-size: 16px;
         }

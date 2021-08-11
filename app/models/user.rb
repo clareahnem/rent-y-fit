@@ -14,4 +14,5 @@ class User < ApplicationRecord
     build_address if address.nil?
     self
   end
+
 end
