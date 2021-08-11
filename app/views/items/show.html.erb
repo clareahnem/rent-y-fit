@@ -50,7 +50,7 @@
       <div class='row p-3'>
         <%= link_to 'Back', items_path, class:"btn bg-light m-2" %>
         <% if user_signed_in? && (current_user.id == @item.user_id) %>
-          <%# is the item is posted by this user display edit and delete buttons %>
+          <%# if the item is posted by this user display edit and delete buttons %>
           <%= link_to 'Edit', edit_item_path(@item), class:"btn bg-warning m-2"%>
           <%= button_to 'Delete FiT', item_path(@item), method: :delete, data: {confirm: "Are you sure?"}, class:"btn bg-danger m-2" %>
         <% end %>
