@@ -1,4 +1,4 @@
-<h1 class="dashboard-title">My Dashboard</h1>
+<h1 class="dashboard-title"><%=current_user.username%>'s Dashboard</h1>
 <div class="white dash-section round-top">
     <h2>New Rent requests(<%=@requesteditems.count%>)</h2>
     <%= render 'shared/bookingcard', bookings:@requesteditems%>
