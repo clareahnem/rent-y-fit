@@ -20,7 +20,7 @@ module ApplicationHelper
         activeorders = []
         bookings.each do |booking|
             end_date = booking.start_date.next_day(booking.no_of_days)
-            if booking.start_date.past? && end_date.future?
+            if booking.start_date.past? && end_date.future? 
                 activeorders.push booking
             end
         end
@@ -43,5 +43,10 @@ module ApplicationHelper
             return "Make FiT Unavailable"
         end
         return "Make FiT Available"
+    end
+
+    def total_price(booking)
+        total = (booking.no_of_days * booking.item.price_per_day) + booking.item.deposit
+        return total
     end
 end

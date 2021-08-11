@@ -13,9 +13,11 @@ class PagesController < ApplicationController
         @items = Item.where(user_id: current_user.id)
         # all items uploaded by current user that has a pending booking request
         @requesteditems = Booking.where(status:"pending").joins(:item).where(items: {user_id: current_user.id})
+        # all items uploaded by current user with approved booking status, not paid yet
         @approveditems = Booking.where(status:"approved").joins(:item).where(items: {user_id: current_user.id})
+        # all items uploaded by current user where booking has been approved and confirmed with payment. 
         @paidbookings = Booking.where(status:"paid").joins(:item).where(items: {user_id: current_user.id})
-
+        # order items that is upcoming
         @upcomingorders = @paidbookings.where("start_date >  ?", Date.today)
         
     end

@@ -2,7 +2,7 @@
   <%bookings.each do |booking|%>
     <div class="card mb-3 p-2" id="bookings-card" style="width: 22vw;">
       <div class = "card-image m-auto align-self-center">
-      <%# uses helper_method to display uploaded image or logo %>
+      <%# ================= uses helper_method to display uploaded image or logo ================== %>
       <%= image_tag product_image(booking.item), class:"index-image"%>
       </div>
       <div class="card-body mt-2">
@@ -13,20 +13,17 @@
         <p><strong>Start date:</strong> <%= booking.start_date%></p>
         <p><strong>Days to rent:</strong> <%= booking.no_of_days%></p>
         <p><strong>$<%= price_to_dollars(booking.item.price_per_day) %></strong>  /day</p>
+
         <div class="booking-buttons">
 
+          <%# ============== DISPLAY OPTIONS FOR CARDS WHERE USER IS THE OWNER OF ITEM. WILL SHOW IN DASHBOARD ============== %>
           <% if booking.item.user_id == current_user.id%>
             <%= link_to display_availability(booking.item), switch_availability_item_path(booking.item), class:"btn btn-sm bg-info"%>
             <%# add form to approve or decline booking if status is pending %>
-            <% if booking.status == "pending"%>
-              <%= form_with url: booking_path(booking), method: :patch do |form|%>
-                <p><%= form.label :status, "Respond to booking"%></p>
-                <%= form.select :status, @statuses, selected: booking.status%>
-                <%= form.submit "Submit Response", class:"btn bg-white btn-sm"%>
-              <% end %>
-            <% end %>
+            <%= render 'shared/bookingresponse', booking:booking, statuses:@statuses %>
           <% end %>
 
+          <%# ============== DISPLAY OPTIONS FOR CARDS WHERE BOOKING REQUEST IS MADE BY USER. WILL SHOW IN CART SUMMARY ============== %>
           <% if booking.requesting_user_id == current_user.id%>
             <% if booking.status == "pending"%>
                 <%= link_to "View FiT", item_path(booking.item), class:"btn btn-sm bg-white"%>
@@ -34,16 +31,16 @@
             <% elsif booking.status == "approved"%>
                 <%= link_to "Proceed to Order", item_booking_path(booking.item.id, booking.id), class:"btn btn-sm bg-success"%>
             <% elsif booking.status == "declined"%>
-                <%= button_to "dismiss booking request", booking_path(booking), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-sm btn-danger"%>
+                <%= button_to "Dismiss booking request", booking_path(booking), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-sm btn-danger"%>
             <% end %>
           <% end%>
 
-          
-          <%# show link to order details if order is created %>
+          <%# ============== DISPLAY OPTIONS FOR CARDS WHERE ORDER IS CONFIRMED (i.e. paid). WILL SHOW IN BOTH DASHBOARD AND CART SUMMARY ============== %>
           <% if !booking.order.nil?%>
             <%= link_to "Order Details", order_path(booking.order), class:"btn btn-sm bg-info mt-1"%>
           <% end %>
         </div>
+
       </div>
     </div>
   <% end %>

@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
     before_action :set_item, only: [:create, :show]
-    before_action :set_booking, only: [:show, :destroy, :edit, :update]
+    before_action :set_booking, only: [:show, :destroy, :update]
     before_action :authenticate_user!
     def index
         # =========displays "your bookings" page========
@@ -35,9 +35,6 @@ class BookingsController < ApplicationController
         # =========updates booking status through dashboard. changeable by owner of item ===========
         @booking.update_column(:status, params[:status])
         redirect_back fallback_location: dashboard_path, notice:"Booking status was successfully updated"
-    end
-
-    def edit
     end
 
     def destroy

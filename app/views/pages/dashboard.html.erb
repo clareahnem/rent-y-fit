@@ -1,3 +1,7 @@
+<%# ================================================================================================================================================= %>
+<%# Dashboard is where you see all bookings regarding items that the current_user has uploaded. It also displays all items regardless of availability %>
+<%# ================================================================================================================================================= %>
+
 <h1 class="dashboard-title"><%=current_user.username%>'s Dashboard</h1>
 <div class="white dash-section round-top">
     <h2>New Rent requests(<%=@requesteditems.count%>)</h2>
@@ -12,10 +16,12 @@
     <%= render 'shared/bookingcard', bookings:@upcomingorders%>
 </div>
 <div class="grey dash-section">
+    <%# uses helper method to find which of the orders are currently active %>
     <h2>Currently Active Orders(<%=active_orders(@paidbookings).count%>)</h2>
     <%= render 'shared/bookingcard', bookings:active_orders(@paidbookings)%>
 </div>
 <div class="white dash-section">
+    <%#  uses helper method to find which of the orders have completed renting period %>
     <h2>Completed Orders(<%=completed_orders(@paidbookings).count%>)</h2>
     <%= render 'shared/bookingcard', bookings:completed_orders(@paidbookings)%>
 </div>

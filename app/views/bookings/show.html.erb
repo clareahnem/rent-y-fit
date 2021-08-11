@@ -24,20 +24,9 @@
         <strong>Condition:</strong>
         <%= @item.condition.capitalize %>
       </p><br />
+        <%# IF BOOKING HAS BEEN APPROVED USER CAN CONFIRM ORDER BY MAKING PAYMENT %>
         <% if @booking.status == "approved"%>
-            <h4 class="pb-4">Booking Confirmed For:</h4>
-            <p><strong>Start date:</strong>
-                <%= @booking.start_date %>
-            </p>
-            <p><strong>Number of days to rent:</strong>
-                <%= @booking.no_of_days %>
-            </p>
-            <h5 class="price-show"><strong>$<%= price_to_dollars(@item.price_per_day)%></strong>/day +</h5>
-            <p class="price-show"> $<%= price_to_dollars(@item.deposit)%> Deposit</p>
-
-            <h5 class="pt-4">Total price: $<%=price_to_dollars((@booking.no_of_days * @item.price_per_day) + @item.deposit)%></h5>
-            <%# button for payment using stripe %>
-            <%= button_to "Proceed to payment", create_payment_intent_path, method: :post, remote: true, params:{id: @booking.id}, class:"btn btn-primary p-3"%>
+            <%= render 'proceed_to_pay', booking:@booking, item:@item %>
         <% end %>
     </div>
     <div class="col-6 col-md-5">
