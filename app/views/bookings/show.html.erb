@@ -6,6 +6,12 @@
         <strong><%= @item.name %></strong>
       </h2>
 
+      <div class="brands-pills mb-3">
+        <% @item.brands.each do |brand| %>
+        <span class="badge badge-pill badge-secondary"><%=brand.name%></span>
+        <% end %>
+      </div>
+
       <p>
         <%= @item.description %>
       </p>
