@@ -30,6 +30,7 @@
                 <%= button_to "Delete booking request", booking_path(booking), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-sm btn-danger"%>
             <% elsif booking.status == "approved"%>
                 <%= link_to "Proceed to Order", item_booking_path(booking.item.id, booking.id), class:"btn btn-sm bg-success"%>
+                <%= button_to "Delete booking request", booking_path(booking), method: :delete, data: {confirm: "Once you dismiss a booking you will have to get owner's approval once again to rent this item. Are you sure?"}, class:"btn btn-sm btn-danger"%>
             <% elsif booking.status == "declined"%>
                 <%= button_to "Dismiss booking request", booking_path(booking), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-sm btn-danger"%>
             <% end %>
