@@ -47,3 +47,86 @@ If you request to rent a FiT, you can view updates on the status of your book re
 The item's booking page will have the total price summarised for you so you can proceed to order knowing how much you will need to pay. By clicking on "Proceed to Order" button you will be directed to the Stripe card payment page. 
 
 Once the payment is successfully made you will be redirected to a payment success page, which means that your rent for the FiT is officially confirmed. Here you will see a confirmation message and link for the order as well as your address that the order is being sent to. You will also be able to view the Order summary from the cart summary page at any time by clicking on the item's "Order Details" button. Order summary will show you the link to your receipt, the address your item will be sent to by which user and care instructions on how to responsibly handle the item you are renting.
+
+---
+## Tech Stack: 
+
+#### Planning
+- Trello
+- Balsamiq Wireframes
+- Draw.io for drawing sitemaps and ERD
+
+#### Version control
+- Git 
+- GitHub
+
+#### Gems, APIs and Other services
+- Rails
+    - Software used to build application
+- Devise
+    - User authorisation
+- Bootstrap
+    - styling visual components
+- Google Fonts
+- AWS S3 bucket
+    - Image storage
+- Ultrahook
+    - local endpoints to connect to stripe
+- Stripe
+    - card payment API
+- Active Storage
+    - Image storage
+- Heroku
+    - deployment
+- Nested_forms
+    - gem for nested forms
+- validates_timeliness
+    - gem for validating date and time data-types
+- Rspec for testing
+    - Factory Bot
+    - Database Cleaner
+
+#### Languages
+- HTML
+- SCSS
+- JavaScript
+- Ruby
+
+## Use of third party services
+#### 1. AWS S3 Bucket
+
+To store images that are uploaded by different users of the application, I have integrated the Amazon Web Service cloud storage S3 bucket. If we were to save all of the images that users attach to their items locally, the memory space of the application will rapidly increase, making the application more costly in terms of hosting and loading time. S3 buckets store uploaded files in a cloud environment in your region and provides security by encrypting download and upload processes, so that the application can safely and quickly push and pull objects to the bucket. 
+
+#### 2. Stripe 
+
+To enable card transactions for renting procedures, I have implemented the Stripe api. Stripe creates a payment session for each transaction and returns an output such as payment receipt and id. Storing sensitive information such as a card number in our database can be extremely dangerous as databases are not secure enough to guarantee that these information would not be accessible to anyone other than the card owner themselves. By creating a stripe checkout session and have the api return certain values for successful payment transaction the database will only hold minimum pieces of information that is required to run the application without errors, whilst providing safety for the users. To test that the stripe session work wihtout issues, **ultrahook** was used alongside stripe to create a webhook for times when the application was running on localhost.
+
+#### 3. Devise
+
+To restrict some features of the application to only authorised users, I have implemented Devise to create user registration and login pages. Sensitive information such as user's emails and addresses must be protected so that each user can only access or view information regarding themselves. Devise is a secure third party application software that implements user authorisation through sessions. It ensures that passwords are heavily encrypted to prevent data breaches. it also provides rails with useful helper methods including `authenticate_user!` that can prevent unauthorised user from loading certain pages.  
+
+#### 4. Bootstrap
+
+Bootstrap was implemented in this application to assist with the visual styling of the application. Complex structures such as the navigation bar and grid layouts were implemented using bootstrap class names. It allowed for the MVP of the application to be built without putting much effort and time into css/scss, overall increasing the efficiency of application production process.
+
+---
+
+## Models and Associations
+An **Address** model contains information about the postal address of a user. All fields are mandatory hence cannot be left as nil. We Further validate the postcode as RENT-Y-FiT services are currently only available to those in Victoria, Australia. 
+- **Address** has a one to one association with **User**, where User has one address and an address belongs to a user. Addresss table contains the foreign key `user_id` which directly points to a user in a user's table.
+
+A **User** model is created using devise and contains user's information about their emails and passwords necessary for authentication, as well as names and usernames for easier identification and improved UI/UX. Username is a mandatory field as they are used as an identifier in our application views to show who the owner of the item is, who requested to rent an item and more. User's email and passwords are also mandatory fields as they are a vital piece of information for user authentication.
+- **User** has a one to many relationshio with **Item**, where User has many items and an item belongs to a user, referenced by the `user_id` foreign key.
+- **User** has a one to many relationship with **Booking**, where user can create many bookings and a booking belongs to a `requesting_user`, a foreign key referencing a user.
+
+**Category** model holds name of an item's category such as "Jackets", and "Hats".
+- **Category** has a many to one relationship with **Item**, where a category has many items and an item belongs to a category through `category_id` foreign key.
+
+**Items** table contains key information about the FiT being listed, including its `name`, `price_per_day`, `availability` and `deposit` amount. The `name` of the item, the `availability` and the `price_per_day` are mandatory fields as they are all required for associated entities such as p`rice_per_day` for orders and `availability` for bookings. `Condition` is an enum where each integer represents a condition such as "Distressed" or "Excellent" to indicate the quality of the item. `description` is a text field where user can describe the item in detail including features such as sizings and graphics. `availability` of the item defaults to true when it is initially created. This can be switched on and off by the owner of the item through their dashboard page.  
+- **Item** and **Brand** have a many to many association through a join table **Items_brand**, where an items_brand contains a row with a single item and one or more brands. A single brand can contain zero or more items through an items-brands table. Since items can be no branded, it is not mandatory that an item lists a brand.
+- **Item** and **Booking** has a one to many relationship, where an item can have multiple bookings created, and a single booking will reference a particular item through an `item_id` foreign key.
+- **Item** can have multiple **Orders** through a **Booking**. A single instance of an Order will reference a single Item, therefore Item and Order models have a one to many relationship.
+- Each **Item** can have a single `picture` attached through Active storage. An Active Storage attachment belongs to an active storage blob in a one to one relationship.
+
+**Bookings** table can be created when a user wishes to rent a FiT. It holds information on which days this user would like to rent the item and the current status of the booking such as "approved" or "pending". All fields in the Bookings table are mandatory as it forms the basis of an order. Booking must identify who is requesting through a `requesting_user` foreign key, and for which item referenced with `item_id` foreign key. 
+- **Booking** can have zero or one **Order**, forming a one to one relationship. A Booking can only create an order when booking status is "approved". Orders table will hold information such as the `payment_id` and the `receipt_url` to the transaction receipt, vital to prove a successful transaction. Order model contains a foreign key `booking_id` to refer to a specific item's booking.
