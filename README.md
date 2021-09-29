@@ -1,6 +1,7 @@
 # RENT-Y-FiT: A Ruby on Rails Marketplace Application
 ---
-####Link to RENT-Y-FiT: 
+#### Link to RENT-Y-FiT: 
+
 https://rent-y-fit.herokuapp.com/ 
 
 ---
