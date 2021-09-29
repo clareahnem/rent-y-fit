@@ -6,7 +6,7 @@ https://rent-y-fit.herokuapp.com/
 
 ---
 ## What is RENT-Y-FiT? (Problems and Purpose)
-RENT-Y-FiT (short for Rent-Your-Outfit) is a marketplace web application where Melbournians streetwear lovers can can exchange items in their wardrobes. This application was created in 3 weeks for a project at Coder Academy using Ruby on Rails.
+RENT-Y-FiT (short for Rent-Your-Outfit) is a marketplace web application where Melbournians streetwear lovers can can exchange items in their wardrobes. This application was created in 3 weeks for a project at Coder Academy using Ruby on Rails, therefore is not for a running business.
 
 We all know by now that fast fashion [impacts our environment](https://www.sustainyourstyle.org/old-environmental-impacts) in so many aspects - toxic wastewaters are released to rivers and oceans, textile fibres are dumped and comsumed by wildlife, and production and transportation of apparel items cost tons of energy. However, fashion as a form of self expression is definitely not something that should be compromised. We still want to wear what we like, stay on trend, and we don't want to feel guilty doing so either!
 There is of course, an option to buy and resell your items as second hand, but there are sometimes some problems;
