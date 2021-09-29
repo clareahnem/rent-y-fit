@@ -2,8 +2,6 @@
 ---
 ####Link to RENT-Y-FiT: 
 https://rent-y-fit.herokuapp.com/ 
-#### GitHub Repository:
-https://github.com/clareahnem/rent-y-fit
 
 ---
 ## What is RENT-Y-FiT? (Problems and Purpose)
